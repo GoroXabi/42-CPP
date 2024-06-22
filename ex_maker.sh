@@ -31,6 +31,8 @@ EOL
 #ifndef PLACEHOLDER_HPP
 #define PLACEHOLDER_HPP
 
+#include <iostream>
+
 class	Placeholder
 {
 private:
