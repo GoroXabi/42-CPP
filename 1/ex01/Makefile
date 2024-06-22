@@ -1,4 +1,4 @@
-name		:=	placeholder
+name		:=	Horde
 compiler	:=	c++
 cflags		:=	-Wall -Wextra -Werror -std=c++98
 
@@ -7,7 +7,7 @@ cflags		:=	-Wall -Wextra -Werror -std=c++98
 all: $(name)
 
 $(name):
-	$(compiler) $(cflags) main.cpp placeholder.cpp -o $(name)
+	$(compiler) $(cflags) main.cpp Zombie.cpp zombieHorde.cpp -o $(name)
 
 clean:
 	rm $(name)
