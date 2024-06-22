@@ -1,7 +1,7 @@
 
 #include <iostream>
-#include "phone_book.hpp"
-#include "contact.hpp"
+#include "Phone_book.hpp"
+#include "Contact.hpp"
 
 int main(void)
 {
