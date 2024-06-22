@@ -1,8 +1,16 @@
 #include <iostream>
-#include "placeholder.hpp"
+#include "Zombie.hpp"
 
 
 int main() {
-    
-    return 0;
+
+	int N = 5;
+	int i;
+	Zombie *Horde = zombieHorde(N, "Legion");
+
+	for (i = 0; i < N; i++) {
+		Horde[i].announce();
+	}
+	delete[] Horde;
+    return (0);
 }
