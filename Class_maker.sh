@@ -1,21 +1,17 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-  echo "mete un numero tolai"
+  echo "mete el nombre de una clase tolai"
   exit 1
 fi
 
 class_name="placeholder"
-
-folder_name=$1
-class_name=$2
+class_name=$1
 
 class_name_HPP=$(echo "$class_name" | tr '[:lower:]' '[:upper:]')
 class_name_HPP=$(printf "%s_HPP" $class_name_HPP)
 
-mkdir -p "$folder_name"
-
-  cat <<EOL > "$folder_name/main.cpp"
+  cat <<EOL > "main.cpp"
 #include <iostream>
 #include "$class_name.hpp"
 
@@ -26,7 +22,7 @@ int main() {
 }
 EOL
 
-  cat <<EOL > "$folder_name/$class_name.cpp"
+  cat <<EOL > "$class_name.cpp"
 #include "$class_name.hpp"
 
 /*--------------------------------------------------------------*/
@@ -42,7 +38,7 @@ $class_name::$class_name(const $class_name &model) {
 }
 
 $class_name &$class_name::operator=(const $class_name &model) {
-
+	return (*this);
 }
 
 /*--------------------------------------------------------------*/
@@ -59,7 +55,7 @@ $class_name::~$class_name() {
 
 EOL
 
-  cat <<EOL > "$folder_name/$class_name.hpp"
+  cat <<EOL > "$class_name.hpp"
 #ifndef $class_name_HPP
 #define $class_name_HPP
 
@@ -86,7 +82,7 @@ public:
 
 #endif
 EOL
-  cat <<EOL > "$folder_name/Makefile"
+  cat <<EOL > "Makefile"
 name		:=	$class_name
 compiler	:=	c++
 cflags		:=	-Wall -Wextra -Werror -std=c++98
@@ -103,4 +99,4 @@ clean:
 
 re: clean all
 EOL
-echo "Se ha creado una carpeta $folder_name, para la clase $class_name"
+echo "Se han creado cosas para la clase $class_name"
