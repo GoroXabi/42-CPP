@@ -8,22 +8,22 @@ Harl::Harl(){
 }
 
 void	Harl::debug(void){
-	std::cout << "WAHT ARE U DOING TRIYING TO DEBUG? \nYOUR CODE IS ALWAYS RIGTH THE FIRST TIME. \nPUSH IT TO PRODUCTION :)" << std::endl;
+	std::cout << "[DEBUG]\n" << "WAHT ARE U DOING TRIYING TO DEBUG? \nYOUR CODE IS ALWAYS RIGTH THE FIRST TIME. \nPUSH IT TO PRODUCTION :)" << std::endl;
 	exit(0);
 }
 
 void	Harl::info(void){
-	std::cout << "THE CAPITAL OF BRUNEI IS BANDAR SERI BEGAWAN" << std::endl;
+	std::cout << "[INFO]\n" << "THE CAPITAL OF BRUNEI IS BANDAR SERI BEGAWAN" << std::endl;
 	exit(0);
 }
 
 void	Harl::warning(void){
-	std::cout << "DONT DRIVE WHILE DRINKING, U CAN DRINK WHILE DRIVING THO" << std::endl;
+	std::cout << "[WARNING]\n" << "DONT DRIVE WHILE DRINKING, U CAN DRINK WHILE DRIVING THO" << std::endl;
 	exit(0);
 }
 
 void	Harl::error(void){
-	std::cout << "IN THE DEBUG LINE THE WORD RIGTH IS SPELL WRONG" << std::endl;
+	std::cout << "[ERROR]\n" << "IN THE DEBUG LINE THE WORD RIGTH IS SPELL WRONG" << std::endl;
 	exit(0);
 }
 
@@ -31,7 +31,7 @@ void	Harl::error(void){
 void	Harl::complain(std::string complain)
 {
 	void (Harl::*function_list[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string	function_names[] = {"debug", "info", "warning", "error"};
+	std::string	function_names[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int i;
 
 	for (i = 0; i < 4; i++)
