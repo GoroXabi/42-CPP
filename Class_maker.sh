@@ -100,3 +100,4 @@ clean:
 re: clean all
 EOL
 echo "Se han creado cosas para la clase $class_name"
+echo ""
