@@ -1,27 +1,27 @@
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 #include <iostream>
 #include "ClapTrap.hpp"
 
-class	FragTrap : public ClapTrap
+class	ScavTrap : public ClapTrap
 {
 private:
 
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
-	FragTrap();
-	FragTrap(std::string name);
-	FragTrap(const FragTrap &model);
-	FragTrap &operator=(const FragTrap &model);
+	ScavTrap();
+	ScavTrap(std::string name);
+	ScavTrap(const ScavTrap &model);
+	ScavTrap &operator=(const ScavTrap &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
-	~FragTrap();
+	~ScavTrap();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-	void highFivesGuys(void);
+	void guardGate();
 };
 
 #endif
