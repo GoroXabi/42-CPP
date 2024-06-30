@@ -5,7 +5,9 @@
 /*--------------------------------------------------------------*/
 
 DiamondTrap::DiamondTrap() {
-
+	name = "nameless";
+	ClapTrap::set_name("nameless_clap_name");
+	ClapTrap::set_HP(10);
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &model) {
