@@ -136,23 +136,23 @@ void ClapTrap::showInfo()
 /*--------------------------------------------------------------*/
 
 
-std::string	ClapTrap::get_name(){
+std::string	ClapTrap::get_name() const {
 	return(name);
 }
 
-std::string	ClapTrap::get_type(){
+std::string	ClapTrap::get_type() const {
 	return(monster_type);
 }
 
-int	ClapTrap::get_HP(){
+int	ClapTrap::get_HP() const {
 	return(HP);
 }
 
-int	ClapTrap::get_AD(){
+int	ClapTrap::get_AD() const {
 	return(AD);
 }
 
-int	ClapTrap::get_EP(){
+int	ClapTrap::get_EP() const {
 	return(EP);
 }
 
