@@ -9,7 +9,7 @@ DiamondTrap::DiamondTrap() {
 	set_name(name + "_clap_name");
 	set_type("DiamondTrap");
 	set_HP(FragTrap::get_HP());
-	set_EP(ScavTrap::get_EP());
+	set_EP(50);
 	set_AD(FragTrap::get_AD());
 
 	std::cout << "DiamondTrap default constructor called, name set to "<< name << " and " << get_name() << std::endl;
@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(std::string new_name) {
 	set_name(name + "_clap_name");
 	set_type("DiamondTrap");
 	set_HP(FragTrap::get_HP());
-	set_EP(ScavTrap::get_EP());
+	set_EP(50);
 	set_AD(FragTrap::get_AD());
 	
 	std::cout << "DiamondTrap constructor(string) called, name set to "<< name << " and " << get_name() << std::endl;

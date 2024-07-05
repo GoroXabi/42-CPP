@@ -46,7 +46,7 @@ int main()
 	bool		hero_def = false;
 
 	hero_HP = 100;
-	hero_AD = 20;
+	hero_AD = 30;
 
 	std::cout << "WELCOME TO HERO'S ADVENTURES!" << std::endl;
 	std::cout << "WHATS YOUR NAME?" << std::endl;
