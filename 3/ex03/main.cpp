@@ -4,6 +4,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 
 
@@ -39,7 +40,7 @@ int main()
 	std::system("clear");
 	std::string prompt;
 	std::string	hero_name;
-	FragTrap enemy("Maricarmen");
+	DiamondTrap enemy("Jonh");
 	int			hero_AD;
 	int			hero_HP;
 	bool		hero_def = false;
@@ -96,18 +97,13 @@ int main()
 		}
 		if (enemy.get_HP() <= 0)
 		{
+			enemy.whoAmI();
 			std::cout << enemy.get_name() << " WAS DEFEATED!!!" << std::endl;
 			std::cout << "YOU WIN!!!" << std::endl;
 			return (0);
 		}
 		if (hero_HP <= 0)
 		{
-			if (enemy.get_type() == "FragTrap" && enemy.get_EP() > 0) {
-				std::cout << "YOU ALMOST FELL FOR THE LAS STRIKE BUT..." << std::endl;
-				enemy.highFivesGuys();
-				std::cout << "YOU WIN A FRIEND!!!" << std::endl;
-				return (0);
-			}
 			std::cout << enemy.get_name() << " DEALED FATAL DAMAGE" << std::endl;
 			std::cout << "YOU LOST!!!" << std::endl;
 			return (0);

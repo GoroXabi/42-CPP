@@ -36,11 +36,11 @@ public:
 	void	beRepaired(unsigned int amount);
 	void	showInfo();
 
-	std::string		get_name();
-	std::string		get_type();
-	int				get_HP();
-	int				get_AD();
-	int				get_EP();
+	std::string		get_name() const;
+	std::string		get_type() const;
+	int				get_HP() const;
+	int				get_AD() const;
+	int				get_EP() const;
 
 	void			set_name(std::string new_name);
 	void			set_type(std::string new_type);
