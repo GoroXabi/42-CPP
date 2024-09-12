@@ -1,15 +1,13 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-{}
+Zombie::Zombie(){
+}
 
-Zombie::~Zombie()
-{
+Zombie::~Zombie(){
 	std::cout << name << ": I have achived inteligence, therefore i have been killed as a zombie" << std::endl;
 }
 
-void	Zombie::announce(void)
-{
+void	Zombie::announce(void){
 	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
