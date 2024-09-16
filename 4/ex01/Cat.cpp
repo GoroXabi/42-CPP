@@ -5,16 +5,19 @@
 /*--------------------------------------------------------------*/
 
 Cat::Cat() {
+	brain = new Brain();
 	set_type("Cat");
 	std::cout << "Cat default constructor called, type set to " << "Cat" << std::endl;
 }
 
 Cat::Cat(const Cat &model): Animal(model) {
+	brain = new Brain(*model.brain);
 	std::cout << "Animal model constructor called, type set to " << get_type() << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &model) {
 	Animal::operator=(model);
+	brain = new Brain(*model.brain);
 	std::cout << "Animal =constructor called, type set to " << get_type() << std::endl;
 	return (*this);
 }
@@ -24,6 +27,7 @@ Cat &Cat::operator=(const Cat &model) {
 /*--------------------------------------------------------------*/
 
 Cat::~Cat() {
+	delete brain;
 	std::cout << "Cat destructor called" << std::endl;
 }
 
