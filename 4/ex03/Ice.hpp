@@ -1,35 +1,31 @@
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef ICE_HPP
+#define ICE_HPP
 
 #include <iostream>
-#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 
-class	AMateria
+class	Ice : public AMateria
 {
 protected:
-
-	std::string type;
-
+	//[...]
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
-
-	AMateria();
-	AMateria(const AMateria &model);
-	AMateria &operator=(const AMateria &model);
-	AMateria(std::string const & type);
+	Ice();
+	Ice(const AMateria &model);
+	Ice &operator=(const AMateria &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
-	~AMateria();
+	~Ice();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-
+	Ice(std::string const & type);
+	//[...]
 	std::string const & getType() const; //Returns the materia type
-	virtual AMateria* clone() const = 0;
+	virtual Ice* clone() const = 0;
 	virtual void use(ICharacter& target);
 };
-
 
 #endif

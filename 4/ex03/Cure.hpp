@@ -1,33 +1,30 @@
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include <iostream>
-#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 
-class	AMateria
+class	Cure: public AMateria
 {
 protected:
-
-	std::string type;
-
+	//[...]
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
-
-	AMateria();
-	AMateria(const AMateria &model);
-	AMateria &operator=(const AMateria &model);
-	AMateria(std::string const & type);
+	Cure();
+	Cure(const Cure &model);
+	Cure &operator=(const Cure &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
-	~AMateria();
+	~Cure();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-
+	Cure(std::string const & type);
+	//[...]
 	std::string const & getType() const; //Returns the materia type
-	virtual AMateria* clone() const = 0;
+	virtual Cure* clone() const = 0;
 	virtual void use(ICharacter& target);
 };
 
