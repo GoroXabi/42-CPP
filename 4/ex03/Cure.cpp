@@ -1,44 +1,44 @@
-#include "AMateria.hpp"
+#include "Cure.hpp"
 
 /*--------------------------------------------------------------*/
 /*							CONSTRUCTORS						*/
 /*--------------------------------------------------------------*/
 
-AMateria::AMateria() {
-	type = "materia";	
-	std::cout << "Materia default constructor called, type set to " << type << std::endl;
+Cure::Cure() {
+	type = "cure";	
+	std::cout << "Cure default constructor called, type set to " << type << std::endl;
 }
 
-AMateria::AMateria(const AMateria &model) {
+Cure::Cure(const Cure &model) {
 	type = model.type;
-	std::cout << "Materia model constructor called, type set to " << type << std::endl;
+	std::cout << "Cure model constructor called, type set to " << type << std::endl;
 
 }
 
-AMateria &AMateria::operator=(const AMateria &model) {
+Cure &Cure::operator=(const Cure &model) {
 	type = model.type;
-	std::cout << "Materia =constructor called, type set to " << type << std::endl;
+	std::cout << "Cure =constructor called, type set to " << type << std::endl;
 	return (*this);
 }
 
-AMateria::AMateria(std::string const &new_type) {
+Cure::Cure(std::string const &new_type) {
 	type = new_type;	
-	std::cout << "Materia default constructor called, type set to " << type << std::endl;
+	std::cout << "Cure default constructor called, type set to " << type << std::endl;
 }
 
 /*--------------------------------------------------------------*/
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/
 
-AMateria::~AMateria() {
-	std::cout << "Materia default destrucotr called" << std::endl;
+Cure::~Cure() {
+	std::cout << "Cure default destrucotr called" << std::endl;
 }
 
 /*--------------------------------------------------------------*/
 /*							GET_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-std::string const &AMateria::getType() const{
+std::string const &Cure::getType() const{
 	return(type);
 }
 
@@ -46,6 +46,6 @@ std::string const &AMateria::getType() const{
 /*						PUBLIC_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-void	AMateria::use(ICharacter& target) {
-	return ;
+void	Cure::use(ICharacter& target) {
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

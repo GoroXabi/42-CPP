@@ -1,44 +1,44 @@
-#include "AMateria.hpp"
+#include "Ice.hpp"
 
 /*--------------------------------------------------------------*/
 /*							CONSTRUCTORS						*/
 /*--------------------------------------------------------------*/
 
-AMateria::AMateria() {
-	type = "materia";	
-	std::cout << "Materia default constructor called, type set to " << type << std::endl;
+Ice::Ice() {
+	type = "ice";	
+	std::cout << "Ice default constructor called, type set to " << type << std::endl;
 }
 
-AMateria::AMateria(const AMateria &model) {
+Ice::Ice(const Ice &model) {
 	type = model.type;
-	std::cout << "Materia model constructor called, type set to " << type << std::endl;
+	std::cout << "Ice model constructor called, type set to " << type << std::endl;
 
 }
 
-AMateria &AMateria::operator=(const AMateria &model) {
+Ice &Ice::operator=(const Ice &model) {
 	type = model.type;
-	std::cout << "Materia =constructor called, type set to " << type << std::endl;
+	std::cout << "Ice =constructor called, type set to " << type << std::endl;
 	return (*this);
 }
 
-AMateria::AMateria(std::string const &new_type) {
+Ice::Ice(std::string const &new_type) {
 	type = new_type;	
-	std::cout << "Materia default constructor called, type set to " << type << std::endl;
+	std::cout << "Ice default constructor called, type set to " << type << std::endl;
 }
 
 /*--------------------------------------------------------------*/
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/
 
-AMateria::~AMateria() {
-	std::cout << "Materia default destrucotr called" << std::endl;
+Ice::~Ice() {
+	std::cout << "Ice default destrucotr called" << std::endl;
 }
 
 /*--------------------------------------------------------------*/
 /*							GET_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-std::string const &AMateria::getType() const{
+std::string const &Ice::getType() const{
 	return(type);
 }
 
@@ -46,6 +46,6 @@ std::string const &AMateria::getType() const{
 /*						PUBLIC_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-void	AMateria::use(ICharacter& target) {
-	return ;
+void	Ice::use(ICharacter& target) {
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
