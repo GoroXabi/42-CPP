@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xabier <xabier@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xortega <xortega@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:30:59 by xabier            #+#    #+#             */
-/*   Updated: 2024/06/18 17:11:42 by xabier           ###   ########.fr       */
+/*   Updated: 2024/09/24 11:11:02 by xortega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<iostream>
 
-int    main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int 	i;
 	size_t	k;
@@ -27,7 +27,7 @@ int    main(int argc, char **argv)
 		}
 	}
 	else
-		std::cout << "...";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	std::cout << std::endl;
 	return (0);
 }

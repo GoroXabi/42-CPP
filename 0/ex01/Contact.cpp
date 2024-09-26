@@ -1,14 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xortega <xortega@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 11:09:29 by xortega           #+#    #+#             */
+/*   Updated: 2024/09/24 11:27:27 by xortega          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
-#include <string>
+
+
 
 Contact::Contact()
 {
-    first_name = "";
-    last_name = "";
-    nick_name = "";
-    phone_number = "";
-    dark_secret = "";
+	first_name = "";
+	last_name = "";
+	nick_name = "";
+	phone_number = "";
+	dark_secret = "";
 }
+
+
+Contact::~Contact(){}
 
 void	Contact::set_first_name(std::string new_first_name){
 	first_name = new_first_name;

@@ -1,22 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xortega <xortega@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 11:09:39 by xortega           #+#    #+#             */
+/*   Updated: 2024/09/24 11:16:11 by xortega          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "Phone_book.hpp"
-#include "Contact.hpp"
-#include <algorithm>
-#include <cstddef>
-#include <iomanip>
-#include <ios>
-#include <iostream>
-#include <string>
+#include "PhoneBook.hpp"
 
-Phone_Book::Phone_Book()
-{
-}
+PhoneBook::PhoneBook() {}
+PhoneBook::~PhoneBook() {}
 
-Contact	Phone_Book::get_contact(int i){
+Contact	PhoneBook::get_contact(int i){
 	return (contacts[i]);
 }
 
-int		Phone_Book::count_added_contacts()
+int		PhoneBook::count_added_contacts()
 {
 	int n;
 
@@ -27,14 +30,23 @@ int		Phone_Book::count_added_contacts()
 	return (n);
 }
 
-void	Phone_Book::add_contact(int i)
+bool check_num(std::string phone_num) {
+	for (size_t i = 0; i < phone_num.length(); i++)
+	{
+		if (!std::isdigit(phone_num[i]))
+			return(true);
+	}
+	return(false);
+}
+
+void	PhoneBook::add_contact(int i)
 {
 	std::string	buffer;
 
 	std::cout << "First Name:" << std::endl;
 	std::getline(std::cin, buffer);
 	while (buffer.empty() || buffer == "\n"){
-		std::cout << "Not a valid imput" << std::endl;
+		std::cout << "Not a valid imput, please enter a valid one." << std::endl;
 		std::getline(std::cin, buffer);
 	}
 	contacts[i].set_first_name(buffer);
@@ -42,7 +54,7 @@ void	Phone_Book::add_contact(int i)
 	std::cout << "Last Name:" << std::endl;
 	std::getline(std::cin, buffer);
 	while (buffer.empty() || buffer == "\n"){
-		std::cout << "Not a valid imput" << std::endl;
+		std::cout << "Not a valid imput, please enter a valid one." << std::endl;
 		std::getline(std::cin, buffer);
 	}
 	contacts[i].set_last_name(buffer);
@@ -50,15 +62,15 @@ void	Phone_Book::add_contact(int i)
 	std::cout << "Nick Name:" << std::endl;
 	std::getline(std::cin, buffer);
 	while (buffer.empty() || buffer == "\n"){
-		std::cout << "Not a valid imput" << std::endl;
+		std::cout << "Not a valid imput, please enter a valid one." << std::endl;
 		std::getline(std::cin, buffer);
 	}
 	contacts[i].set_nick_name(buffer);
 
 	std::cout << "Phone Number:" << std::endl;
 	std::getline(std::cin, buffer);
-	while (buffer.empty() || buffer == "\n"){
-		std::cout << "Not a valid imput" << std::endl;
+	while (buffer.empty() || buffer == "\n" || check_num(buffer)){
+		std::cout << "Not a valid imput, please enter a valid one." << std::endl;
 		std::getline(std::cin, buffer);
 	}
 	contacts[i].set_phone_number(buffer);
@@ -66,7 +78,7 @@ void	Phone_Book::add_contact(int i)
 	std::cout << "Dark Secret:" << std::endl;
 	std::getline(std::cin, buffer);
 	while (buffer.empty() || buffer == "\n"){
-		std::cout << "Not a valid imput" << std::endl;
+		std::cout << "Not a valid imput, please enter a valid one." << std::endl;
 		std::getline(std::cin, buffer);
 	}
 	contacts[i].set_dark_secret(buffer);
@@ -80,7 +92,7 @@ void	print_col(std::string str)
 		std::cout << "|" << std::setw(10) << std::right << str;
 }
 
-void	Phone_Book::search(void)
+void	PhoneBook::search(void)
 {
 	int	n;
 	std::string	prompt;
