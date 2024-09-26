@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xortega <xortega@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 11:09:34 by xortega           #+#    #+#             */
+/*   Updated: 2024/09/24 11:23:47 by xortega          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include <iostream>
-#include "Phone_book.hpp"
+#include "PhoneBook.hpp"
 #include "Contact.hpp"
 
 int main(void)
 {
-	Phone_Book book;
+	PhoneBook	book;
 	std::string prompt;
-	int			n;
-
-	n = 0;
+	int			n = 0;
+	
 	std::cout << "PHONE BOOK" << std::endl;
 
 	std::cout << "TYPE ADD TO ADD A NEW CONTACT" << std::endl;
