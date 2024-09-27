@@ -1,7 +1,5 @@
 #include "Harl.hpp"
-#include <cstdlib>
 #include <iostream>
-#include <string>
 
 Harl::Harl(){
 
@@ -23,7 +21,6 @@ void	Harl::error(void){
 	std::cout << "[ERROR]\n" << "IN THE DEBUG LINE THE WORD RIGTH IS SPELL WRONG" << std::endl;
 }
 
-
 void	Harl::complain(std::string complain)
 {
 	void (Harl::*function_list[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
@@ -31,16 +28,24 @@ void	Harl::complain(std::string complain)
 	int i;
 
 	for (i = 0; i < 4; i++)
-	{
 		if (complain == function_names[i])
-		{
-			for (i = i; i < 4; i++)
-			{
-				(this->*function_list[i])();
-				std::cout << std::endl;
-			}
-			exit(0);
-		}
+			break;
+
+	switch (i)
+	{
+		case 0:
+			(this->*function_list[0])();
+			/* fallthrough */
+		case 1:
+			(this->*function_list[1])();
+			/* fallthrough */
+		case 2:
+			(this->*function_list[2])();
+			/* fallthrough */
+		case 3:
+			(this->*function_list[3])();
+			break;
+		default:
+			std::cout << "IDK WHAT ARE U SAYING" << std::endl;
 	}
-	std::cout << "IDK WHAT ARE U SAYING" << std::endl;
 }
