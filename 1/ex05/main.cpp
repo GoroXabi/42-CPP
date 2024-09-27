@@ -11,5 +11,5 @@ int main(int argc, char *argv[])
 	else
 		std::cout << "PLS I DONT FUNCTION UNLES U PASS ME 1 ARGUMENT" << std::endl;
 
-    return (1);
+    return (0);
 }

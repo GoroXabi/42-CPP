@@ -1,13 +1,38 @@
-name		:=	Armory
-compiler	:=	c++
-cflags		:=	-Wall -Wextra -Werror -std=c++98
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xortega <xortega@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/26 11:13:56 by xortega           #+#    #+#              #
+#    Updated: 2024/09/26 13:04:34 by xortega          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Armory
+
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+OBJ = $(SRC:%.cpp=%.o)
+CC = c++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 
+all: $(NAME)
 
-all: $(name)
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-$(name):
-	$(compiler) $(cflags) main.cpp Weapon.cpp HumanA.cpp HumanB.cpp -o $(name)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm $(name)
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re
