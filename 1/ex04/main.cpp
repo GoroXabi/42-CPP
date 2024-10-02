@@ -51,23 +51,10 @@ int main(int argc, char *argv[]) {
 		return(1);
 
 	}
-	
-	int lines;
-
-	for (std::string buffer; std::getline(infile, buffer);)
-		lines++;
-
-	infile.close();
-	infile.open(argv[1]);
-		
-	if(!infile.is_open()) {
-		outfile.close();
-		return(1);
-	}
 
 	for (std::string buffer; std::getline(infile, buffer);) {
 		outfile << replaceAll(buffer, argv[2], argv[3]);
-		if (--lines > 0)
+		if (!infile.eof())
 			outfile << std::endl;
 	}
 
