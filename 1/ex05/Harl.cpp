@@ -28,7 +28,12 @@ void	Harl::complain(std::string complain)
 	for (i = 0; i < 4; i++)
 	{
 		if (complain == function_names[i])
+		{
+
 			(this->*function_list[i])();
+			return ;
+		}
 	}
+
 	std::cout << "IDK WHAT ARE U SAYING" << std::endl;
 }
