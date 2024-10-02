@@ -25,8 +25,6 @@ std::string replaceAll(std::string str, const std::string& from, const std::stri
 	return (new_str);
 }
 
-//REHACER REHACER
-
 int main(int argc, char *argv[]) {
 
 	if (argc != 4)
@@ -35,13 +33,45 @@ int main(int argc, char *argv[]) {
 		return (1);
 	}
 
+	std::ifstream	infile(argv[1]);
 	std::string		outname(argv[1]);
 	std::ofstream	outfile(outname.append(".replace").c_str());
-	std::ifstream	infile(argv[1]);
 
+	if (!infile.is_open() || !outfile.is_open())
+	{
+
+		if (infile.is_open())
+			infile.close();
+
+		if (outfile.is_open())
+			outfile.close();
+
+		std::cout << "SOMETHING WENT WRONG OPENING THE FILES" << std::endl;
+		
+		return(1);
+
+	}
+	
+	int lines;
 
 	for (std::string buffer; std::getline(infile, buffer);)
-		outfile << replaceAll(buffer, argv[2], argv[3]) << std::endl;
+		lines++;
 
-    return (0);
+	infile.close();
+	infile.open(argv[1]);
+		
+	if(!infile.is_open()) {
+		outfile.close();
+		return(1);
+	}
+
+	for (std::string buffer; std::getline(infile, buffer);) {
+		outfile << replaceAll(buffer, argv[2], argv[3]);
+		if (--lines > 0)
+			outfile << std::endl;
+	}
+
+	infile.close();
+	outfile.close();
+	return (0);
 }
