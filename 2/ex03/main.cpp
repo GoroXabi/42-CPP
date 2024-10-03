@@ -9,9 +9,21 @@ int main(void)
 	Point	point_b(4.5, 5.5);
 	Point	point_c(8, 2);
 	
+/*
+
+.
+			(4.5, 5.5)
+			  /\
+			 / .\
+			/ .  \
+		   /      \
+		  /        \
+	 (0,1) --------- (8,2)
+*/
+
 	Point	point1(4, 3);
 	Point	point2(5, 5);
-	Point	point3(-4.5, 8.3);
+	Point	point3(-2.5, 8.3);
 
 	if (bsp(point_a, point_b, point_c, point1))
 		std::cout << "point1 is inside" << std::endl;
