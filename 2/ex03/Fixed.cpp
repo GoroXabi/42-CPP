@@ -85,22 +85,22 @@ bool	Fixed::operator!=(const Fixed &to_compare)
 /*							ARITHMETIC							*/
 /*--------------------------------------------------------------*/
 
-Fixed	Fixed::operator+(const Fixed &to_compare){
+Fixed	&Fixed::operator+(const Fixed &to_compare){
 	value += to_compare.value;
 	return *this;
 }
 
-Fixed	Fixed::operator-(const Fixed &to_compare){
+Fixed	&Fixed::operator-(const Fixed &to_compare){
 	value -= to_compare.value;
 	return *this;
 }
 
-Fixed	Fixed::operator*(const Fixed &to_compare){
+Fixed	&Fixed::operator*(const Fixed &to_compare){
 	 value = (value * (to_compare.value >> fractional_bits));
 	return *this;
 }
 
-Fixed	Fixed::operator/(const Fixed &to_compare){
+Fixed	&Fixed::operator/(const Fixed &to_compare){
 		 value = (value / (to_compare.value >> fractional_bits));
 	return *this;
 }

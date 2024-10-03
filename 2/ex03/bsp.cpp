@@ -1,5 +1,4 @@
 #include "Point.hpp"
-#include <functional>
 
 /*
 	f(x) = mx + b;

@@ -37,10 +37,10 @@ public:
 
 /*--------------------ARITHMETIC---------------------*/
 
-	Fixed	operator+(const Fixed &to_compare);
-	Fixed	operator-(const Fixed &to_compare);
-	Fixed	operator*(const Fixed &to_compare);
-	Fixed	operator/(const Fixed &to_compare);
+	Fixed	&operator+(const Fixed &to_compare);
+	Fixed	&operator-(const Fixed &to_compare);
+	Fixed	&operator*(const Fixed &to_compare);
+	Fixed	&operator/(const Fixed &to_compare);
 
 /*----------------INCREMENT/DECREMENT----------------*/
 

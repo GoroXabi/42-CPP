@@ -13,7 +13,6 @@ Point::Point(Point &model): x(model.x), y(model.y) {}
 
 Point &Point::operator=(const Point &model)
 {
-	//ez dakit hau legala bada;
 	this->~Point();
 	new(this) Point(model.x.toFloat(), model.y.toFloat());
 	return (*this);
