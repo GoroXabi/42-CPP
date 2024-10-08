@@ -1,15 +1,39 @@
-name		:=	HERO\'S-ADVENTURESv4
-compiler	:=	c++
-cflags		:=	-Wall -Wextra -Werror -std=c++98
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xortega <xortega@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/02 12:15:31 by xortega           #+#    #+#              #
+#    Updated: 2024/10/02 12:25:22 by xortega          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Traps
+
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+OBJ = $(SRC:%.cpp=%.o)
+CC = c++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
 
 
+all: $(NAME)
 
-all: $(name)
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-$(name):
-	$(compiler) $(cflags) main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp -o $(name)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm $(name)
+	$(RM) $(OBJ)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re

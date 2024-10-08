@@ -11,6 +11,7 @@ private:
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
+	
 	ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap &model);
@@ -21,7 +22,9 @@ public:
 	~ScavTrap();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-	void guardGate();
+
+	void	guardGate();
+	void	attack(const std::string& target);
 };
 
 #endif

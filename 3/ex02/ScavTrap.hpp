@@ -21,7 +21,8 @@ public:
 	~ScavTrap();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-	void guardGate();
+	void	guardGate();
+	void	attack(const std::string& target);
 };
 
 #endif

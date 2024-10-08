@@ -5,22 +5,26 @@
 /*--------------------------------------------------------------*/
 
 DiamondTrap::DiamondTrap() {
+	
+	ScavTrap temp;
+
 	name = "nameless";
 	set_name(name + "_clap_name");
-	set_type("DiamondTrap");
 	set_HP(FragTrap::get_HP());
-	set_EP(50);
+	set_EP(temp.get_EP());
 	set_AD(FragTrap::get_AD());
 
 	std::cout << "DiamondTrap default constructor called, name set to "<< name << " and " << get_name() << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string new_name) {
+	
+	ScavTrap temp;
+
 	name = new_name;
 	set_name(name + "_clap_name");
-	set_type("DiamondTrap");
 	set_HP(FragTrap::get_HP());
-	set_EP(50);
+	set_EP(temp.get_EP());
 	set_AD(FragTrap::get_AD());
 	
 	std::cout << "DiamondTrap constructor(string) called, name set to "<< name << " and " << get_name() << std::endl;
@@ -31,13 +35,8 @@ DiamondTrap::DiamondTrap(const DiamondTrap &model): ClapTrap(model), ScavTrap(mo
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &model) {
+	ClapTrap::operator=(model);
 	name = model.name;
-	set_name(model.get_name());
-	set_type(model.get_type());
-	set_HP(model.get_HP());
-	set_EP(model.get_EP());
-	set_AD(model.get_AD());
-
 	std::cout << "DiamondTrap =constructor called, name set to "<< name << " and " << get_name() << std::endl;
 
 	return (*this);
