@@ -6,7 +6,6 @@
 
 ScavTrap::ScavTrap() {
 	set_name("nameless");
-	set_type("ScavTrap");
 	set_HP(100);
 	set_EP(50);
 	set_AD(20);
@@ -14,9 +13,8 @@ ScavTrap::ScavTrap() {
 	std::cout << "ScavTrap default constructor called, name set to " << get_name() << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) {
-	set_name(name);
-	set_type("ScavTrap");
+ScavTrap::ScavTrap(std::string new_name) {
+	set_name(new_name);
 	set_HP(100);
 	set_EP(50);
 	set_AD(20);
@@ -49,4 +47,19 @@ ScavTrap::~ScavTrap() {
 
 void ScavTrap::guardGate() {
 	std::cout << "ScavTrap " << get_name() <<" is in Gate Keeper mode" << std::endl;
+}
+
+void	ScavTrap::attack(const std::string& target)
+{
+	if (get_EP() == 0) {
+		std::cout << "ScavTrap " << get_name() << " has no energy left!" << std::endl;
+		return ;
+	}
+	if (get_HP() == 0) {
+		std::cout << "ScavTrap " << get_name() << " has no HP left!" << std::endl;
+		return ;
+	}
+	std::cout << "ScavTrap " << get_name() << " atacks " << target << 
+	", causing " << get_AD() << " points of damage!" << std::endl;
+	set_EP(get_EP() - 1);
 }

@@ -8,8 +8,7 @@
 
 ClapTrap::ClapTrap()
 {
-	name = "Nameless";
-	monster_type = "ClapTrap";
+	name = "nameless";
 	HP = 10;
 	EP = 10;
 	AD = 10;
@@ -20,7 +19,6 @@ std::cout << "ClapTrap default constructor called, name set to " << name << std:
 ClapTrap::ClapTrap(std::string new_name)
 {
 	name = new_name;
-	monster_type = "ClapTrap";
 	HP = 10;
 	EP = 10;
 	AD = 10;
@@ -31,7 +29,6 @@ ClapTrap::ClapTrap(std::string new_name)
 ClapTrap::ClapTrap(const ClapTrap &model)
 {
 	name = model.name;
-	monster_type = model.monster_type;
 	HP = model.HP;
 	EP = model.EP;
 	AD = model.AD;
@@ -42,7 +39,6 @@ ClapTrap::ClapTrap(const ClapTrap &model)
 ClapTrap &ClapTrap::operator=(const ClapTrap &model)
 {
 	name = model.name;
-	monster_type = model.monster_type;
 	HP = model.HP;
 	EP = model.EP;
 	AD = model.AD;
@@ -103,34 +99,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << " to " << HP << std::endl;
 }
 
-void	print_col(std::string str)
-{
-	if (str.length() > 10)
-		std::cout << "|" << str.substr(0, 9) << ".";
-	else 
-		std::cout << "|" << std::setw(10) << std::left << str;
-}
-
-void ClapTrap::showInfo()
-{
-	std::stringstream	int_str;
-
-	std::cout << "\n" << name << " estatus:" << std::endl;
-
-	std::cout << "|   TYPE   |   NAME   |HIT POINTS|  ENERGY  | ATACK DMG |" << std::endl;
-	print_col(monster_type);
-	print_col(name);
-	int_str << HP;
-	print_col(int_str.str());
-	int_str.str("");
-	int_str << EP;
-	print_col(int_str.str());
-	int_str.str("");
-	int_str << AD;
-	print_col(int_str.str());
-	std::cout << " |" << std::endl;
-}
-
 /*--------------------------------------------------------------*/
 /*							GET_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
@@ -138,10 +106,6 @@ void ClapTrap::showInfo()
 
 std::string	ClapTrap::get_name(){
 	return(name);
-}
-
-std::string	ClapTrap::get_type(){
-	return(monster_type);
 }
 
 int	ClapTrap::get_HP(){
@@ -162,10 +126,6 @@ int	ClapTrap::get_EP(){
 
 void	ClapTrap::set_name(std::string new_name){
 	name = new_name;
-}
-
-void	ClapTrap::set_type(std::string new_type){
-	monster_type = new_type;
 }
 
 void	ClapTrap::set_HP(int new_HP){

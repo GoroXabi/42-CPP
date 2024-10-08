@@ -6,7 +6,6 @@
 
 FragTrap::FragTrap() {
 	set_name("nameless");
-	set_type("FragTrap");
 	set_HP(100);
 	set_EP(100);
 	set_AD(30);
@@ -14,9 +13,8 @@ FragTrap::FragTrap() {
 	std::cout << "FragTrap default constructor called, name set to " << get_name() << std::endl;
 }
 
-FragTrap::FragTrap(std::string name) {
-	set_name(name);
-	set_type("FragTrap");
+FragTrap::FragTrap(std::string new_name) {
+	set_name(new_name);
 	set_HP(100);
 	set_EP(100);
 	set_AD(30);
