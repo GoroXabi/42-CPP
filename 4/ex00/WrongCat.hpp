@@ -19,11 +19,10 @@ public:
 /*--------------------DESTRUCTORS--------------------*/
 
 	~WrongCat();
-
+	
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
-	void	makeSound() const;
-
+	void						makeSound() const;
 };
 
 #endif

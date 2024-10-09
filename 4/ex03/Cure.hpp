@@ -14,6 +14,7 @@ public:
 /*--------------------CONSTRUCTORS-------------------*/
 	Cure();
 	Cure(const Cure &model);
+	Cure(std::string const & type);
 	Cure &operator=(const Cure &model);
 
 /*--------------------DESTRUCTORS--------------------*/
@@ -21,11 +22,10 @@ public:
 	~Cure();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-	Cure(std::string const & type);
 	//[...]
 	std::string const & getType() const; //Returns the materia type
-	virtual Cure* clone() const = 0;
-	virtual void use(ICharacter& target);
+	Cure* clone() const;
+	void use(ICharacter& target);
 };
 
 

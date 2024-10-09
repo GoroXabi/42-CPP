@@ -5,17 +5,17 @@
 /*--------------------------------------------------------------*/
 
 Cat::Cat() {
-	set_type("Cat");
+	type = "Cat";
 	std::cout << "Cat default constructor called, type set to " << "Cat" << std::endl;
 }
 
 Cat::Cat(const Cat &model): Animal(model) {
-	std::cout << "Animal model constructor called, type set to " << get_type() << std::endl;
+	std::cout << "Animal model constructor called, type set to " << type << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &model) {
 	Animal::operator=(model);
-	std::cout << "Animal =constructor called, type set to " << get_type() << std::endl;
+	std::cout << "Animal =constructor called, type set to " << type << std::endl;
 	return (*this);
 }
 

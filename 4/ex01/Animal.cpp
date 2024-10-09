@@ -40,7 +40,6 @@ void	Animal::makeSound() const {
 /*							GET_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-
 std::string	Animal::get_type() const {
 	return(type);
 }
