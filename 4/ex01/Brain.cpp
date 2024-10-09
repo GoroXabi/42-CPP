@@ -13,7 +13,6 @@ Brain::Brain() {
 		buffer << "idea number " << i;
 		ideas[i] = buffer.str();
 	}
-	
 }
 
 Brain::Brain(const Brain &model) {
@@ -41,3 +40,9 @@ Brain::~Brain() {
 /*						PUBLIC_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
+std::string	Brain::get_idea(int n) {
+	if (n < 0 || n > 100)
+		return (NULL);
+	
+	return (ideas[n]);
+}

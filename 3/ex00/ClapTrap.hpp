@@ -8,6 +8,7 @@
 
 class	ClapTrap
 {
+
 private:
 
 	std::string name;

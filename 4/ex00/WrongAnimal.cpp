@@ -33,7 +33,7 @@ WrongAnimal::~WrongAnimal() {
 /*--------------------------------------------------------------*/
 
 void	WrongAnimal::makeSound() const {
-	std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+	std::cout << "I AM NOT AN ANIMAL SAVE ME PLS" << std::endl;
 }
 
 /*--------------------------------------------------------------*/

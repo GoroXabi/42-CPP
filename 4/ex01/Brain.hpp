@@ -22,6 +22,8 @@ public:
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
+	std::string	get_idea(int n);
+
 };
 
 #endif

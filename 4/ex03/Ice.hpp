@@ -24,8 +24,8 @@ public:
 	Ice(std::string const & type);
 	//[...]
 	std::string const & getType() const; //Returns the materia type
-	virtual Ice* clone() const = 0;
-	virtual void use(ICharacter& target);
+	Ice* clone() const;
+	void use(ICharacter& target);
 };
 
 #endif

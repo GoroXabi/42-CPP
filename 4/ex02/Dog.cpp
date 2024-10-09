@@ -6,19 +6,19 @@
 
 Dog::Dog() {
 	brain = new Brain();
-	set_type("Dog");
-	std::cout << "Dog default constructor called, type set to " << "Dog" << std::endl;
+	type = "Dog";
+	std::cout << "Dog default constructor called, type set to " << type << std::endl;
 }
 
 Dog::Dog(const Dog &model): AAnimal(model) {
 	brain = new Brain(*model.brain);
-	std::cout << "Animal model constructor called, type set to " << get_type() << std::endl;
+	std::cout << "AAnimal model constructor called, type set to " << type << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &model) {
 	AAnimal::operator=(model);
 	brain = new Brain(*model.brain);
-	std::cout << "Animal =constructor called, type set to " << get_type() << std::endl;
+	std::cout << "AAnimal =constructor called, type set to " << type << std::endl;
 	return (*this);
 }
 

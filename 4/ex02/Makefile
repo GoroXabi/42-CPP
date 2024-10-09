@@ -1,15 +1,38 @@
-name		:=	Farm
-compiler	:=	c++
-cflags		:=	-Wall -Wextra -Werror -std=c++98
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xortega <xortega@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/02 12:15:31 by xortega           #+#    #+#              #
+#    Updated: 2024/10/09 15:13:56 by xortega          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Farm
+
+SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
+OBJ = $(SRC:%.cpp=%.o)
+CC = c++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
 
 
+all: $(NAME)
 
-all: $(name)
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-$(name):
-	$(compiler) $(cflags) main.cpp Brain.cpp AAnimal.cpp Dog.cpp Cat.cpp -o $(name)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm $(name)
+	$(RM) $(OBJ)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re

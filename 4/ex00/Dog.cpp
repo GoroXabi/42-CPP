@@ -5,17 +5,17 @@
 /*--------------------------------------------------------------*/
 
 Dog::Dog() {
-	set_type("Dog");
+	type = "Dog";
 	std::cout << "Dog default constructor called, type set to " << "Dog" << std::endl;
 }
 
 Dog::Dog(const Dog &model): Animal(model) {
-	std::cout << "Animal model constructor called, type set to " << get_type() << std::endl;
+	std::cout << "Animal model constructor called, type set to " << type << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &model) {
 	Animal::operator=(model);
-	std::cout << "Animal =constructor called, type set to " << get_type() << std::endl;
+	std::cout << "Animal =constructor called, type set to " << type << std::endl;
 	return (*this);
 }
 
@@ -32,5 +32,5 @@ Dog::~Dog() {
 /*--------------------------------------------------------------*/
 
 void	Dog::makeSound() const {
-	std::cout << "wof Wof WOf WOF" << std::endl;
+	std::cout << "Woff" << std::endl;
 }
