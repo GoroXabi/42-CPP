@@ -6,7 +6,7 @@
 #    By: xortega <xortega@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 12:15:31 by xortega           #+#    #+#              #
-#    Updated: 2024/10/09 09:38:04 by xortega          ###   ########.fr        #
+#    Updated: 2025/01/13 11:35:52 by xortega          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ OBJ = $(SRC:%.cpp=%.o)
 CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
-
 
 all: $(NAME)
 
