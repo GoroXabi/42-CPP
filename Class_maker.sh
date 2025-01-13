@@ -89,7 +89,7 @@ EOL
 cpp_names=$(ls | grep .cpp | tr -s '\n' ' ')
   cat <<EOL > "Makefile"
 NAME		:= default
-SRC=		:= $cpp_names
+SRC			:= $cpp_names
 OBJ			:= \$(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f
