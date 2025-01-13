@@ -11,6 +11,8 @@ class_name=$1
 class_name_HPP=$(echo "$class_name" | tr '[:lower:]' '[:upper:]')
 class_name_HPP=$(printf "%s_HPP" $class_name_HPP)
 
+if [ $(ls "main.cpp" | tr -d '\n' ) != "main.cpp" ]; then
+
   cat <<EOL > "main.cpp"
 #include <iostream>
 #include "$class_name.hpp"
@@ -21,6 +23,8 @@ int main() {
     return 0;
 }
 EOL
+
+fi
 
   cat <<EOL > "$class_name.cpp"
 #include "$class_name.hpp"
@@ -82,9 +86,10 @@ public:
 
 #endif
 EOL
+cpp_names=$(ls | grep .cpp | tr -s '\n' ' ')
   cat <<EOL > "Makefile"
-NAME		:=	$class_name
-SRC=		:= main.cpp $class_name
+NAME		:= default
+SRC=		:= $cpp_names
 OBJ			:= \$(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f
