@@ -13,7 +13,7 @@ int main()
 {
     Bureaucrat jose("jose", 99);
 
-    std::cout << jose << std::endl;
+    std::cout << HGRE << jose << RST << std::endl;
 
     Bureaucrat paco("paco", 20);
     Bureaucrat tulio;
@@ -24,11 +24,11 @@ int main()
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << HRED << e.what() << RST << std::endl;
     }
     
-    std::cout << paco << std::endl;
-    std::cout << tulio << std::endl;
+    std::cout << HBLU << paco << RST << std::endl;
+    std::cout << HMAG << tulio << RST << std::endl;
 
 
     return (0);

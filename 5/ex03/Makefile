@@ -1,15 +1,25 @@
-name		:=	Intern
-compiler	:=	c++
-cflags		:=	-Wall -Wextra -Werror -std=c++98
+NAME		:= default
+SRC			:= AForm.cpp Bureaucrat.cpp Intern.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp 
+OBJ			:= $(SRC:%.cpp=%.o)
+CC			:=	c++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
 
+all: $(NAME)
 
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-all: $(name)
-
-$(name):
-	$(compiler) $(cflags) main.cpp Intern.cpp -o $(name)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm $(name)
+	$(RM) $(OBJ)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re
+

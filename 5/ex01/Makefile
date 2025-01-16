@@ -1,5 +1,5 @@
-NAME		:=	Form
-SRC=		:= main.cpp Form
+NAME		:= default
+SRC			:= Bureaucrat.cpp main.cpp Form.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f
@@ -11,7 +11,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CPPFLAGS) -c $< -o Form
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

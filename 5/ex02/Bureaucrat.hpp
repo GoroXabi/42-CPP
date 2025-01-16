@@ -1,29 +1,27 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-class	Form
+class	Bureaucrat
 {
 private:
-
 	const std::string	_name;
-	bool 				_signed;
-	const int			_grade_sig;
-	const int			_grade_exe;
+	int					_grade;
 
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
-	Form();
-	Form(std::string name, int grade_sig, int grade_exe);
-	Form(const Form &model);
-	Form &operator=(const Form &model);
+
+	Bureaucrat();
+	Bureaucrat(std::string name, int grade);
+	Bureaucrat(const Bureaucrat &model);
+	Bureaucrat &operator=(const Bureaucrat &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
-	~Form();
+	~Bureaucrat();
 
 /*-----------------------CLASES----------------------*/
 
@@ -35,16 +33,18 @@ public:
 		public:
 			const char *what() const throw();
 	};
+
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
 	std::string getName() const;
-	int 		getGradeSig() const;
-	int 		getGradeExe() const;
-	bool		getSigned() const;
-	void 		beSigned(const class Bureaucrat &bureaucrat);
+	int			getGrade() const;
+	void		promote();
+	void		demote();
+	void		signForm(class AForm &form);
+	void		executeForm(AForm const & form);
 
 };
 
-	std::ostream &operator<<(std::ostream &ostream, const Form&model);
+	std::ostream &operator<<(std::ostream &ostream, const Bureaucrat&model);
 
 #endif
