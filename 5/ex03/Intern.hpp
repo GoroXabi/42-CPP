@@ -2,6 +2,7 @@
 #define INTERN_HPP
 
 #include <iostream>
+#include "AForm.cpp"
 
 class	Intern
 {
@@ -19,6 +20,8 @@ public:
 	~Intern();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
+
+	makeForm(std::string name, std::string target);
 
 };
 

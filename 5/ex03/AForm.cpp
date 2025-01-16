@@ -1,17 +1,17 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /*--------------------------------------------------------------*/
 /*							CONSTRUCTORS						*/
 /*--------------------------------------------------------------*/
 
-Form::Form():
+AForm::AForm():
 	_name("default"),
 	_signed(false),
 	_grade_sig(75),
 	_grade_exe(50)
 	{}
 
-Form::Form(std::string name, int grade_sig, int grade_exe):
+AForm::AForm(std::string name, int grade_sig, int grade_exe):
 	_name(name),
 	_signed(false),
 	_grade_sig(grade_sig),
@@ -26,7 +26,7 @@ Form::Form(std::string name, int grade_sig, int grade_exe):
 		throw GradeTooHighException();
 }
 
-Form::Form(const Form &model):
+AForm::AForm(const AForm &model):
 	_name(model._name),
 	_signed(false),
 	_grade_sig(model._grade_sig),
@@ -34,7 +34,7 @@ Form::Form(const Form &model):
 	{}
 
 
-Form &Form::operator=(const Form &model) {
+AForm &AForm::operator=(const AForm &model) {
 	
 	_signed = model._signed;
 	return (*this);
@@ -44,7 +44,7 @@ Form &Form::operator=(const Form &model) {
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/
 
-Form::~Form() {
+AForm::~AForm() {
 
 }
 
@@ -52,45 +52,58 @@ Form::~Form() {
 /*						PUBLIC_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-std::string Form::getName() const {
+std::string AForm::getName() const {
 	return(_name);
 }
 	
-int Form::getGradeSig() const {
+int AForm::getGradeSig() const {
 	return(_grade_sig);
 }
 	
-int Form::getGradeExe() const {
+int AForm::getGradeExe() const {
 	return(_grade_exe);
 }
 
-bool	Form::getSigned() const {
+bool	AForm::getSigned() const {
 	return(_signed);
 }
 
-void Form::beSigned(const Bureaucrat &bureaucrat) {
+void AForm::beSigned(const Bureaucrat &bureaucrat) {
 
 	if (_grade_sig < bureaucrat.getGrade())
 		throw GradeTooLowException();
 	_signed = true;
 }
 
+void	AForm::execute(Bureaucrat const & executor) const {
+	if (!_signed)
+		throw FormNotSignedException();
+	if (_grade_exe < executor.getGrade())
+		throw GradeTooLowException();
+	beExecuted();
+}
+
 /*--------------------------------------------------------------*/
 /*							 CLASES								*/
 /*--------------------------------------------------------------*/
 
-const char	*Form::GradeTooHighException::what() const throw() {
+const char	*AForm::GradeTooHighException::what() const throw() {
 	return("Form grade Too High Exception");
 }
-const char	*Form::GradeTooLowException::what() const throw() {
+
+const char	*AForm::GradeTooLowException::what() const throw() {
 	return("Form grade Too Low Exception");
+}
+
+const char	*AForm::FormNotSignedException::what() const throw() {
+	return("Form Not Signed Exception");
 }
 
 /*--------------------------------------------------------------*/
 /*						OTHER_FUNCTIONS							*/
 /*--------------------------------------------------------------*/
 
-std::ostream	&operator<<(std::ostream &ostream, const Form &model) {
+std::ostream	&operator<<(std::ostream &ostream, const AForm &model) {
 
 	ostream << "The form: " << model.getName() << ", needs a " << model.getGradeSig()
 	 << " to be signed and a " << model.getGradeExe() << " to be exececuted" << std::endl;
