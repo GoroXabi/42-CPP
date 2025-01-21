@@ -2,7 +2,10 @@
 #define INTERN_HPP
 
 #include <iostream>
-#include "AForm.cpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 class	Intern
 {
@@ -21,7 +24,7 @@ public:
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
-	makeForm(std::string name, std::string target);
+	AForm *makeForm(std::string type, std::string target);
 
 };
 

@@ -5,22 +5,22 @@
 /*--------------------------------------------------------------*/
 
 RobotomyRequestForm::RobotomyRequestForm(): 
-	AForm("RobotomyRequestForm", 72, 45), _target("default") {
+	AForm("RobotomyRequestForm", 72, 45, "default") {
 
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target):
-	AForm("RobotomyRequestForm", 72, 45), _target(target) {
+	AForm("RobotomyRequestForm", 72, 45, target) {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &model):
-	AForm("RobotomyRequestForm", 72, 45), _target(model._target) {
+	AForm("RobotomyRequestForm", 72, 45,model.getTarget()) {
 
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &model) {
-	
-	this->_target = model._target;
+
+	(void)model;
 	return (*this);
 }
 
@@ -43,7 +43,7 @@ void RobotomyRequestForm::beExecuted() const {
 	std::cout << "drilling..." << std::endl; sleep(1);
 	srand (time(NULL));
 	if (rand() % 2)
-		std::cout << _target << " has been robotomized!" << std::endl;
+		std::cout << getTarget() << " has been robotomized!" << std::endl;
 	else
-		 std::cout << _target << " robotomi failed :(" << std::endl;
+		 std::cout << getTarget() << " robotomi failed :(" << std::endl;
 }

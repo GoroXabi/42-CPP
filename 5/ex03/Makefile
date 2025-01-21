@@ -1,5 +1,5 @@
 NAME		:= default
-SRC			:= AForm.cpp Bureaucrat.cpp Intern.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp 
+SRC			:= AForm.cpp Bureaucrat.cpp main.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f

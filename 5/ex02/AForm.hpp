@@ -11,13 +11,16 @@ private:
 	const std::string	_name;
 	bool 				_signed;
 	const int			_grade_sig;
-	const int			_grade_exe;
+	const int			_grade_exe;	
+	std::string			_target;
+
+	
 
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
 	AForm();
-	AForm(std::string name, int grade_sig, int grade_exe);
+	AForm(std::string name, int grade_sig, int grade_exe, std::string target);
 	AForm(const AForm &model);
 	AForm &operator=(const AForm &model);
 
@@ -42,6 +45,7 @@ public:
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
 	std::string 	getName() const;
+	std::string 	getTarget() const;
 	int 			getGradeSig() const;
 	int 			getGradeExe() const;
 	bool			getSigned() const;

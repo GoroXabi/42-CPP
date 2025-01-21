@@ -5,22 +5,22 @@
 /*--------------------------------------------------------------*/
 
 ShrubberyCreationForm::ShrubberyCreationForm(): 
-	AForm("ShrubberyCreationForm", 145, 137), _target("default") {
+	AForm("ShrubberyCreationForm", 145, 137,"default") {
 
 
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target):
-	AForm("ShrubberyCreationForm", 145, 137), _target(target) {
+	AForm("ShrubberyCreationForm", 145, 137,target) {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &model):
-	AForm("ShrubberyCreationForm", 145, 137), _target(model._target) {
+	AForm("ShrubberyCreationForm", 145, 137, model.getTarget()) {
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &model) {
-	
-	this->_target = model._target;
+
+	(void)model;
 	return (*this);
 }
 
@@ -37,7 +37,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 /*--------------------------------------------------------------*/
 
 void	ShrubberyCreationForm::beExecuted() const {
-	std::ofstream file((_target + "_shrubbery").c_str());
+	std::ofstream file((getTarget() + "_shrubbery").c_str());
 	if (!file.is_open())
 		std::cout << "File cannot be create" << std::endl;
 	else
