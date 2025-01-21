@@ -8,14 +8,16 @@ AForm::AForm():
 	_name("default"),
 	_signed(false),
 	_grade_sig(75),
-	_grade_exe(50)
+	_grade_exe(50),
+	_target("default")
 	{}
 
-AForm::AForm(std::string name, int grade_sig, int grade_exe):
+AForm::AForm(std::string name, int grade_sig, int grade_exe, std::string target):
 	_name(name),
 	_signed(false),
 	_grade_sig(grade_sig),
-	_grade_exe(grade_exe){
+	_grade_exe(grade_exe),
+	_target(target){
 	if (grade_exe < 1)
 		throw GradeTooLowException();
 	if (grade_exe > 150)
@@ -30,13 +32,15 @@ AForm::AForm(const AForm &model):
 	_name(model._name),
 	_signed(false),
 	_grade_sig(model._grade_sig),
-	_grade_exe(model._grade_exe)
+	_grade_exe(model._grade_exe),
+	_target(model._target)
 	{}
 
 
 AForm &AForm::operator=(const AForm &model) {
 	
 	_signed = model._signed;
+	_target = model._target;
 	return (*this);
 }
 
@@ -54,6 +58,10 @@ AForm::~AForm() {
 
 std::string AForm::getName() const {
 	return(_name);
+}
+
+std::string AForm::getTarget() const {
+	return(_target);
 }
 	
 int AForm::getGradeSig() const {

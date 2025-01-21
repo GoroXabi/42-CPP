@@ -101,7 +101,7 @@ all: \$(NAME)
 	\$(CC) \$(CPPFLAGS) \$(OBJ) -o \$(NAME)
 
 %.o: %.cpp
-	\$(CC) \$(CPPFLAGS) -c \$< -o $@
+	\$(CC) \$(CPPFLAGS) -c \$< -o \$@
 
 clean:
 	\$(RM) \$(OBJ)

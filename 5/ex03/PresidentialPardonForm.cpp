@@ -5,22 +5,22 @@
 /*--------------------------------------------------------------*/
 
 PresidentialPardonForm::PresidentialPardonForm(): 
-	AForm("PresidentialPardonForm", 25, 5), _target("default") {
+	AForm("PresidentialPardonForm", 25, 5, "default") {
 
 
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target):
-	AForm("PresidentialPardonForm", 25, 5), _target(target) {
+	AForm("PresidentialPardonForm", 25, 5, target) {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &model):
-	AForm("PresidentialPardonForm", 25, 5), _target(model._target) {
+	AForm("PresidentialPardonForm", 25, 5, model.getTarget()) {
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &model) {
-	
-	this->_target = model._target;
+
+	(void)model;
 	return (*this);
 }
 
@@ -37,5 +37,5 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 /*--------------------------------------------------------------*/
 
 void PresidentialPardonForm::beExecuted() const {
-	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
