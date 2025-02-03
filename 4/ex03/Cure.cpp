@@ -9,7 +9,7 @@ Cure::Cure() {
 	std::cout << "Cure default constructor called, type set to " << type << std::endl;
 }
 
-Cure::Cure(const Cure &model) {
+Cure::Cure(const Cure &model): AMateria::AMateria(){
 	type = model.type;
 	std::cout << "Cure model constructor called, type set to " << type << std::endl;
 
@@ -31,7 +31,7 @@ Cure::Cure(std::string const &new_type) {
 /*--------------------------------------------------------------*/
 
 Cure::~Cure() {
-	std::cout << "Cure default destrucotr called" << std::endl;
+	std::cout << "Cure default destructor called" << std::endl;
 }
 
 /*--------------------------------------------------------------*/
@@ -49,3 +49,8 @@ std::string const &Cure::getType() const{
 void	Cure::use(ICharacter& target) {
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
+
+Cure	*Cure::clone() const {
+	return(new Cure(*this));
+}
+

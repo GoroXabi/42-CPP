@@ -27,14 +27,6 @@ AMateria::AMateria(std::string const &new_type) {
 }
 
 /*--------------------------------------------------------------*/
-/*							DESTRUCTORS							*/
-/*--------------------------------------------------------------*/
-
-AMateria::~AMateria() {
-	std::cout << "Materia default destrucotr called" << std::endl;
-}
-
-/*--------------------------------------------------------------*/
 /*							GET_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
@@ -47,5 +39,5 @@ std::string const &AMateria::getType() const{
 /*--------------------------------------------------------------*/
 
 void	AMateria::use(ICharacter& target) {
-	return ;
+	use(target);
 }

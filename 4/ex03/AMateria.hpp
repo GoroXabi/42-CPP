@@ -22,7 +22,7 @@ public:
 
 /*--------------------DESTRUCTORS--------------------*/
 
-	~AMateria();
+	virtual ~AMateria() {};
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 

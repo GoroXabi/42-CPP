@@ -11,8 +11,12 @@ private:
     AMateria *inventory[4];
     
 public:
-    Character() {}
-    std::string const & getName();
+	Character();
+	Character(const Character &model);
+	Character &operator=(const Character &model);
+	Character(std::string const & name);
+    ~Character();
+    std::string const & getName() const;
     void equip(AMateria* m);
     void unequip(int idx);
     void use(int idx, ICharacter& target);

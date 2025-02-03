@@ -9,7 +9,7 @@ Ice::Ice() {
 	std::cout << "Ice default constructor called, type set to " << type << std::endl;
 }
 
-Ice::Ice(const Ice &model) {
+Ice::Ice(const Ice &model): AMateria::AMateria() {
 	type = model.type;
 	std::cout << "Ice model constructor called, type set to " << type << std::endl;
 
@@ -31,7 +31,7 @@ Ice::Ice(std::string const &new_type) {
 /*--------------------------------------------------------------*/
 
 Ice::~Ice() {
-	std::cout << "Ice default destrucotr called" << std::endl;
+	std::cout << "Ice default destructor called" << std::endl;
 }
 
 /*--------------------------------------------------------------*/
@@ -48,4 +48,8 @@ std::string const &Ice::getType() const{
 
 void	Ice::use(ICharacter& target) {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
+
+Ice	*Ice::clone() const {
+	return(new Ice(*this));
 }
