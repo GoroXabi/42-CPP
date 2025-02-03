@@ -63,5 +63,4 @@ AForm	*Intern::makeForm(std::string type, std::string target) {
 			std::cout << "The type provided isnt expected" << std::endl; 
 	}
 	return(NULL);
-
 }

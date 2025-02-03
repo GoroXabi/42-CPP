@@ -13,15 +13,15 @@ public:
 
 /*--------------------CONSTRUCTORS-------------------*/
 	Ice();
-	Ice(const AMateria &model);
-	Ice &operator=(const AMateria &model);
+	Ice(const Ice &model);
+	Ice(std::string const & type);
+	Ice &operator=(const Ice &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
 	~Ice();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
-	Ice(std::string const & type);
 	//[...]
 	std::string const & getType() const; //Returns the materia type
 	Ice* clone() const;

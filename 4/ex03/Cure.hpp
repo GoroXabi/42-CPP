@@ -25,7 +25,7 @@ public:
 	//[...]
 	std::string const & getType() const; //Returns the materia type
 	Cure* clone() const;
-	void use(ICharacter& target);
+	void use(ICharacter& target) ;
 };
 
 

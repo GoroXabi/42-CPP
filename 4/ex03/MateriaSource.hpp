@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "AMateria.hpp"
-#include "IMaterialSource.hpp"
+#include "IMateriaSource.hpp"
 
 
 class MateriaSource: public IMateriaSource
@@ -15,8 +15,11 @@ private:
 public:
 
 	MateriaSource();
+	MateriaSource(const MateriaSource &model);
+	MateriaSource &operator=(const MateriaSource &model);
 
 	~MateriaSource();
+
 	void learnMateria(AMateria*);
 	AMateria* createMateria(std::string const & type);
 	
