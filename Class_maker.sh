@@ -11,7 +11,7 @@ class_name=$1
 class_name_HPP=$(echo "$class_name" | tr '[:lower:]' '[:upper:]')
 class_name_HPP=$(printf "%s_HPP" $class_name_HPP)
 
-if [ $(ls "main.cpp" | tr -d '\n' ) != "main.cpp" ]; then
+if [ ! -f "main.cpp" ]; then
 
   cat <<EOL > "main.cpp"
 #include <iostream>
