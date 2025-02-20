@@ -2,6 +2,10 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <limits>
+#include <typeinfo>
+#include <stdlib.h>
+#include <iomanip>
 
 class	ScalarConverter
 {
@@ -10,8 +14,6 @@ private:
 /*--------------------CONSTRUCTORS-------------------*/
 
 	ScalarConverter();
-	ScalarConverter(const ScalarConverter &model);
-	ScalarConverter &operator=(const ScalarConverter &model);
 
 /*--------------------DESTRUCTORS--------------------*/
 

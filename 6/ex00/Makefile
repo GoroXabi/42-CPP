@@ -1,5 +1,5 @@
-NAME		:= default
-SRC			:= ScalarConverter.cpp 
+NAME		:= convert
+SRC			:= ScalarConverter.cpp main.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f
@@ -22,4 +22,3 @@ fclean: clean
 re: fclean $(NAME)
 
 .PHONY: all clean fclean re
-
