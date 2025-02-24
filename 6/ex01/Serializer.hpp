@@ -19,6 +19,8 @@ private:
 /*--------------------CONSTRUCTORS-------------------*/
 
 	Serializer();
+	Serializer(Serializer &model);
+	Serializer&operator=(const Serializer&model);
 
 /*--------------------DESTRUCTORS--------------------*/
 
