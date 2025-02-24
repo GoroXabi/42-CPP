@@ -14,6 +14,8 @@ private:
 /*--------------------CONSTRUCTORS-------------------*/
 
 	ScalarConverter();
+	ScalarConverter(ScalarConverter &model);
+	ScalarConverter&operator=(const ScalarConverter&model);
 
 /*--------------------DESTRUCTORS--------------------*/
 

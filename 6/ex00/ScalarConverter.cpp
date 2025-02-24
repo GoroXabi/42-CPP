@@ -8,6 +8,17 @@ ScalarConverter::ScalarConverter() {
 
 }
 
+ScalarConverter::ScalarConverter(ScalarConverter &model) {
+
+	(void)model;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &model) {
+
+	(void)model;
+	return (*this);
+}
+
 /*--------------------------------------------------------------*/
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/

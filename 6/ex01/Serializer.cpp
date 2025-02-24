@@ -8,6 +8,17 @@ Serializer::Serializer() {
 
 }
 
+Serializer::Serializer(Serializer &model) {
+
+	(void)model;
+}
+
+Serializer &Serializer::operator=(const Serializer &model) {
+
+	(void)model;
+	return (*this);
+}
+
 /*--------------------------------------------------------------*/
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/
@@ -21,7 +32,6 @@ Serializer::~Serializer() {
 /*--------------------------------------------------------------*/
 
 uintptr_t Serializer::serialize(Data* ptr){
-
 	return(reinterpret_cast<uintptr_t>(ptr));
 }
 
