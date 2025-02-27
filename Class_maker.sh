@@ -72,6 +72,7 @@ private:
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
+
 	$class_name();
 	$class_name(const $class_name &model);
 	$class_name &operator=(const $class_name &model);
