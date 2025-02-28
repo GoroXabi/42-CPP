@@ -5,7 +5,7 @@
 /*--------------------------------------------------------------*/
 
 
-bool	Date::operator>(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator>(const Date &to_compare) const
 {
 	if (y > to_compare.y)
 		return true;
@@ -22,7 +22,7 @@ bool	Date::operator>(const Date &to_compare) const
 	return false;
 }
 
-bool	Date::operator<(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator<(const Date &to_compare) const
 {
 	if (y < to_compare.y)
 		return true;
@@ -39,7 +39,7 @@ bool	Date::operator<(const Date &to_compare) const
 	return false;
 }
 
-bool	Date::operator>=(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator>=(const Date &to_compare) const
 {
 	if (y >= to_compare.y)
 		return true;
@@ -56,7 +56,7 @@ bool	Date::operator>=(const Date &to_compare) const
 	return false;
 }
 
-bool	Date::operator<=(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator<=(const Date &to_compare) const
 {
 	if (y <= to_compare.y)
 		return true;
@@ -73,7 +73,7 @@ bool	Date::operator<=(const Date &to_compare) const
 	return false;
 }
 
-bool	Date::operator==(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator==(const Date &to_compare) const
 {
 	if (y == to_compare.y
 	&& m == to_compare.m
@@ -82,7 +82,7 @@ bool	Date::operator==(const Date &to_compare) const
 	return false;
 }
 
-bool	Date::operator!=(const Date &to_compare) const
+bool	BitcoinExchange::Date::operator!=(const Date &to_compare) const
 {
 	if (y != to_compare.y
 	|| m != to_compare.m
@@ -91,7 +91,7 @@ bool	Date::operator!=(const Date &to_compare) const
 	return false;
 }
 
-std::ostream &operator<<(std::ostream &ret, const Date &date)
+std::ostream &operator<<(std::ostream &ret, const BitcoinExchange::Date &date)
 {
 	if (date.y < 1000)
 		ret << 0;
@@ -117,18 +117,15 @@ BitcoinExchange::BitcoinExchange() {
 	getData();
 }
 
-bool	tryDate(std::string str_date)
+BitcoinExchange::Date::Date(std::string str_date)
 {
-	try
-	{
-		boost::gregorian::date date(boost::gregorian::from_simple_string(str_date));
-		(void)date;
-		return true;
-	}
-	catch(...)
-	{
-		return false;
-	}
+	size_t f_del = str_date.find('-');
+	size_t s_del = str_date.find_last_of('-');
+
+	y = atoi(str_date.substr(0, f_del).c_str());
+	m = atoi(str_date.substr(f_del, s_del).c_str() + 1);
+	d = atoi(str_date.substr(s_del, str_date.npos).c_str() + 1);
+
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &model) {
@@ -152,17 +149,20 @@ BitcoinExchange::~BitcoinExchange() {
 /*						PUBLIC_FUNCTIONS						*/
 /*--------------------------------------------------------------*/
 
-
-Date::Date(std::string str_date)
+bool	tryDate(std::string str_date)
 {
-	size_t f_del = str_date.find('-');
-	size_t s_del = str_date.find_last_of('-');
-
-	y = atoi(str_date.substr(0, f_del).c_str());
-	m = atoi(str_date.substr(f_del, s_del).c_str() + 1);
-	d = atoi(str_date.substr(s_del, str_date.npos).c_str() + 1);
-
+	try
+	{
+		boost::gregorian::date date(boost::gregorian::from_simple_string(str_date));
+		(void)date;
+		return true;
+	}
+	catch(...)
+	{
+		return false;
+	}
 }
+
 void	BitcoinExchange::getData()
 {
 	std::ifstream data_raw("data.csv");

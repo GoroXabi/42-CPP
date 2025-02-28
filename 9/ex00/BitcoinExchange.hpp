@@ -10,30 +10,27 @@
 #include <cstdlib>
 #include <boost/date_time/gregorian/gregorian.hpp>
 
-class	Date
-{
-public:
-	size_t y;
-	size_t m;
-	size_t d;
-
-	Date(std::string str_date);
-
-	bool operator>(const Date &to_compare) const;
-	bool operator<(const Date &to_compare) const;
-	bool operator>=(const Date &to_compare) const;
-	bool operator<=(const Date &to_compare) const;
-	bool operator==(const Date &to_compare) const;
-	bool operator!=(const Date &to_compare) const;
-	std::string operator<<(const Date &to_compare) const;
-};
-
 class	BitcoinExchange
 {
-private:
-	std::map<Date, float>	data;
-
 public:
+
+	class	Date
+	{
+	public:
+		size_t y;
+		size_t m;
+		size_t d;
+
+		Date(std::string str_date);
+
+		bool operator>(const Date &to_compare) const;
+		bool operator<(const Date &to_compare) const;
+		bool operator>=(const Date &to_compare) const;
+		bool operator<=(const Date &to_compare) const;
+		bool operator==(const Date &to_compare) const;
+		bool operator!=(const Date &to_compare) const;
+		std::string operator<<(const Date &to_compare) const;
+	};
 
 /*--------------------CONSTRUCTORS-------------------*/
 
@@ -49,6 +46,8 @@ public:
 	void	getData();
 	void	calculate(std::string input_name);
 
+private:
+	std::map<Date, float>	data;
 };
 
 #endif
