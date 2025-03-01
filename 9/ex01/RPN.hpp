@@ -2,24 +2,27 @@
 #define RPN_HPP
 
 #include <iostream>
+#include <stack>
 
 class	RPN
 {
 private:
 	
-public:
-
 /*--------------------CONSTRUCTORS-------------------*/
-
+	
 	RPN();
 	RPN(const RPN &model);
 	RPN &operator=(const RPN &model);
-
+	
 /*--------------------DESTRUCTORS--------------------*/
-
+	
 	~RPN();
 
+public:
+
 /*-----------------PUBLIC_FUNCTIONS------------------*/
+
+	static bool calculate(std::string line);
 
 };
 
