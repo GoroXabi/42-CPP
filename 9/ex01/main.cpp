@@ -11,7 +11,13 @@ int main(int argc, char **argv) {
     }
 
 	std::string line(argv[1]);
-    if (!RPN::calculate(line))
-        std::cout << "Error" << std::endl;
+    try
+    {
+        RPN::calculate(line);
+    }
+    catch(...)
+    {
+        std::cerr << "Error" << std::endl;
+    }
     return 0;
 }
