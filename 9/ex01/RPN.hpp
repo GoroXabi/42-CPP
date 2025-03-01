@@ -22,7 +22,7 @@ public:
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
-	static bool calculate(std::string line);
+	static int calculate(std::string line);
 
 };
 

@@ -44,10 +44,10 @@ int	choose(int left, int rigth, char op)
 	return(0);
 }
 
-bool RPN::calculate(std::string line)
+int RPN::calculate(std::string line)
 {
 	if (!isdigit(*line.begin()))
-		return (false);
+		throw std::runtime_error("Error");
 	
 	std::stack<int> stack;
 	
@@ -61,7 +61,7 @@ bool RPN::calculate(std::string line)
 		|| *it == '*' || *it == '/')
 		{
 			if (stack.size() < 2)
-				return (false);
+				throw std::runtime_error("Error");
 			rigth = stack.top();
 			stack.pop();
 			left = stack.top();
@@ -69,14 +69,14 @@ bool RPN::calculate(std::string line)
 			stack.push(choose(left, rigth, *it));
 		}
 		else if (!isdigit(*it))
-			return(false);
+			throw std::runtime_error("Error");
 		else
 			stack.push(*it - '0');
 		
 	}
 	if (stack.size() != 1)
-		return(false);
+		throw std::runtime_error("Error");
 	std::cout << stack.top() << std::endl;
 	
-	return(true);
+	return(stack.top());
 }
