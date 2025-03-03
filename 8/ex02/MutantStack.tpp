@@ -55,7 +55,6 @@ typename MutantStack<T, Container>::const_iterator	MutantStack<T, Container>::en
 	return(this->c.end());
 }
 
-
 template <typename T, typename Container>
 typename MutantStack<T, Container>::const_reverse_iterator	MutantStack<T, Container>::rbegin() const {
 	return(this->c.rbegin());
