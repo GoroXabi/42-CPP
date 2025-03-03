@@ -4,5 +4,6 @@
 
 int main() {
     
+    PmergeMe::calculateVector();
     return 0;
 }
