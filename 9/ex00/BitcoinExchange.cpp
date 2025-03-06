@@ -206,7 +206,7 @@ void	BitcoinExchange::calculate(std::string input_name)
 				if (data.find(date) != data.end())
 					std::cout << date << " => " << number << " = " << data.find(date)->second * number <<std::endl;
 				else
-					std::cout << date << " => " << number << " = " << data.upper_bound(date)->second * number <<std::endl;
+					std::cout << date << " => " << number << " = " << (--data.lower_bound(date))->second * number <<std::endl;
 			}
 		}
 	}

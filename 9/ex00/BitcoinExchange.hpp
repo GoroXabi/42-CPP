@@ -43,6 +43,7 @@ public:
 	~BitcoinExchange();
 
 /*-----------------PUBLIC_FUNCTIONS------------------*/
+
 	void	getData();
 	void	calculate(std::string input_name);
 

@@ -47,17 +47,14 @@ void print_secuence(std::vector<std::vector<int> > secuence)
 	std::cout << std::endl;
 }
 
-std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence)
+std::vector<std::vector<int> > unite(std::vector<std::vector<int> > secuence)
 {
-	print_secuence(secuence);
-	std::vector<std::vector<int> > new_secuence;
-	std::vector<std::vector<int> >::iterator it = secuence.begin();
-	for (; it != secuence.end();)
+
+	std::vector<std::vector<int> > ret;
+	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end();)
 	{
 		if (secuence.end() - it < 2)
-		{
-			break;
-		}
+			break;	
 		else
 		{	
 			std::vector<int> v1 = *it;
@@ -75,35 +72,143 @@ std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence
 				v3.insert(v3.end(), v2.begin(), v2.end());
 				v3.insert(v3.end(), v1.begin(), v1.end());
 			}
-			new_secuence.push_back(v3);
+			ret.push_back(v3);
 		}
 	}
+	return(ret);
+}
+
+std::vector<std::vector<int> > divide(std::vector<std::vector<int> > secuence)
+{
 
 	std::vector<std::vector<int> > ret;
+	size_t middle = secuence.front().size() / 2;
+	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		if (it->size() <= middle || (secuence.size() % 2 && it == secuence.end() - 1 && secuence.size() < 1))
+		{
+			ret.push_back(*it);
+			continue;
+		}
+		ret.push_back(std::vector<int>(it->begin(), it->begin() + middle));
+		ret.push_back(std::vector<int>(it->begin() + middle, it->end()));
+	}
+	return(ret);
+}
+
+bool is_shorted(std::vector<std::vector<int> > secuence)
+{
+	for(std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end() - 1; it++)
+		if (it->back() > (it + 1)->back())
+			return(false);
+	return(true);
+
+}
+
+std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence)
+{
+	std::vector<std::vector<int> > new_secuence(unite(secuence));
+	print_secuence(secuence);
+	std::cout << "+" << std::endl;
+	print_secuence(new_secuence);
 
 	if (new_secuence.size() > 1)
-		new_secuence = calculate(new_secuence);
-
-	int secuence_size = secuence.front().size();
-	int elemet = 0;
-	for(std::vector<std::vector<int> >::iterator ret_it = secuence.begin(); ret_it != secuence.end(); ret_it++)
 	{
-		if (secuence.size() % 2 && secuence.end() - ret_it < 2)
-		{
-			break;
-		}
-		//ESTAS MATANDOTE AQUI POR QUE NECESITAS QUE CUANDO LOS PAQUETES VUELVEN
-		//DE LA RECURSIVIDAD TENGAN LA ESTRUCTURA QUE TENIAN, MUCHO ANIMO
-		int start = elemet * secuence_size;
-		std::vector<int> subvector(new_secuence.begin() + start, new_secuence.begin() + start + secuence_size + 1);
-		ret.push_back(subvector);
+		std::cout << "v" << std::endl;
+		new_secuence = calculate(new_secuence);
 	}
 
-	if (secuence.size() % 2)
-		ret.push_back(secuence.back());
-		
-	return(ret);
+	std::vector<std::vector<int> > main(divide(new_secuence));
+	std::cout << "-" << std::endl;
+	print_secuence(main);
+	//std::cout << ((is_shorted(ret)) ? "true" : "flase") << std::endl;
+	//size_t size = ret.front().size();
 	
+	std::vector<std::vector<int> >pend;
+	for(std::vector<std::vector<int> >::iterator it = main.begin() + 1; main.size() > 2 && it != main.end(); it++)
+	{
+			//std::cout << ":" << ((it - ret.begin()) + 1) << ":" << it->back() << std::endl;
+		if (((it - main.begin()) + 1) % 2)
+			pend.push_back(*it);
+	}
+
+//	for(std::vector<std::vector<int> >::iterator it = pend.begin(); it != pend.end(); it++)
+//		ret.erase(std::find(ret.begin(),ret.end(), *it));
+
+	size_t last_jacob = 1;
+	size_t current_jacob = 3;
+	size_t pos_jacob = current_jacob - last_jacob;
+	std::cout << " ********* " << std::endl;
+	print_secuence(pend);
+	std::cout << " ********* " << std::endl;
+	for(; !pend.empty();)
+	{
+		std::vector<std::vector<int> >::iterator pend_it
+		= (pend.size() > pos_jacob) ? pend.begin() + pos_jacob - 1 : pend.end() - 1;
+		std::cout << pend_it->back() << std::endl;
+		//pend_it = (pend_it == pend.end()) ? pend.begin() : pend_it;
+		for(;pend_it != pend.begin(); pend_it--)
+		{
+			/////////////////^^^^^^^^^^^////////////////////
+			std::cout << "to pend : " << pend_it->back() << std::endl;
+			std::vector<std::vector<int> >::iterator main_it = std::find(main.begin(),main.end(), *pend_it);
+			std::cout << "before: " <<  main_it->back() << std::endl;
+			print_secuence(main);
+			main.erase(main_it);
+			std::cout << "after: " <<  main_it->back() << std::endl;
+			print_secuence(main);
+			for(std::vector<std::vector<int> >::iterator c_it = main.begin(); c_it != main.end(); c_it++)
+			{
+				if (c_it->back() > pend_it->back())	
+				{
+					main.insert(c_it, *pend_it);
+					break;
+				}
+				if (c_it + 1 == main_it)
+					main.insert(c_it, *pend_it);
+			}
+		}
+		print_secuence(pend);
+		std::cout << " ********* " << std::endl;
+		std::cout << "erase " << std::endl;
+		pend.erase(pend.begin(),
+		(pend.size() > pos_jacob) ? pend.begin() + pos_jacob : pend.end());
+		print_secuence(pend);
+		std::cout << " ********* " << std::endl;
+		std::cout << "main " << std::endl;
+		print_secuence(main);
+		std::cout << " ********* " << std::endl;
+
+		size_t tmp_jacob = (last_jacob * 2) + current_jacob;
+		last_jacob = current_jacob;
+		current_jacob = tmp_jacob;
+		pos_jacob = current_jacob - last_jacob;
+		std::cout << "jacob : " << pos_jacob << std::endl;
+	}
+	std::cout << " ----------- " << std::endl;
+	print_secuence(pend);
+	std::cout << " ----------- " << std::endl;
+	
+/* 	for(std::vector<std::vector<int> >::iterator it = ret.begin(); !is_shorted(ret); it++)
+	{
+		if (it == ret.end())
+		{
+			ret.push_back(pend.back());
+			it == ret.begin();
+		}
+		int pend_compare = pend.back().back();
+		int ret_compare = it->back();
+		if ()
+		
+	}
+ */
+	if (secuence.size() % 2)
+		main.push_back(secuence.back());
+	
+	print_secuence(main);
+	std::cout << "^" << std::endl;
+	
+	return(main);
 }
 
 void PmergeMe::calculateVector()
@@ -138,32 +243,11 @@ void PmergeMe::calculateVector()
 	init.push_back(20);
 	init.push_back(13);
 	init.push_back(7);
-	for (std::vector<int>::iterator it = init.begin(); it != init.end();)
+	for (std::vector<int>::iterator it = init.begin(); it != init.end(); it++)
 	{
-		std::vector<int> pair;
-		if (init.end() - it > 1)
-		{
-			int n1 = *it;
-			it++;
-			int n2 = *it;
-			it++;
-			if (n1 < n2)
-			{
-				pair.push_back(n1);
-				pair.push_back(n2);
-			}
-			else
-			{
-				pair.push_back(n2);
-				pair.push_back(n1);
-			}
-		}
-		else
-		{
-			pair.push_back(*it);
-			it++;
-		}
-		secuence.push_back(pair);
+		std::vector<int>v;
+		v.push_back(*it);
+		secuence.push_back(v);
 	}
 	secuence = calculate(secuence);
 	print_secuence(secuence);
