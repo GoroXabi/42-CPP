@@ -32,20 +32,128 @@ ScalarConverter::~ScalarConverter() {
 /*--------------------------------------------------------------*/
 
 void im_char(char val){
+
 	if (isprint(val))
 		std::cout << "char: '" << val << "'" << std::endl;
 	else
 		std::cout << "char: Non displayeable" << std::endl;
+
 	std::cout << "int: " << static_cast<int>(val) << std::endl;
 	std::cout << "float: " << static_cast<float>(val) << std::endl;
 	std::cout << "double: " << static_cast<double>(val) << std::endl;
 }
 
+bool check_int(std::string to_compare)
+{
+	std::string MAX = "2147483647";
+	std::string MIN = "-2147483648";
+
+	if (to_compare[0] == '-')
+	{
+		if (to_compare.length() > MIN.length())
+			return(true);
+
+		if (to_compare.length() < MIN.length())
+			return(false);
+
+		for (size_t i = 0; i < to_compare.length(); i++)
+		{
+
+			if (to_compare[i] < MIN[i])
+				return(true);
+		}
+		return(false);
+	}
+
+	if (to_compare.length() > MAX.length())
+		return(true);
+
+	if (to_compare.length() < MAX.length())
+		return(false);
+
+	for (size_t i = 0; i < to_compare.length(); i++)
+	{
+		if (to_compare[i] > MAX[i])
+			return(true);
+	}
+	return(false);
+}
+bool check_float(std::string to_compare)
+{
+	std::string MAX = "340282346638528859811704183484516925440.000000f";
+	std::string MIN = "-340282346638528859811704183484516925440.000000f";
+
+	if (to_compare[0] == '-')
+	{
+		if (to_compare.length() > MIN.length())
+			return(true);
+
+		if (to_compare.length() < MIN.length())
+			return(false);
+
+		for (size_t i = 0; i < to_compare.length(); i++)
+		{
+
+			if (to_compare[i] < MIN[i])
+				return(true);
+		}
+		return(false);
+	}
+
+	if (to_compare.length() > MAX.length())
+		return(true);
+
+	if (to_compare.length() < MAX.length())
+		return(false);
+
+	for (size_t i = 0; i < to_compare.length(); i++)
+	{
+		if (to_compare[i] > MAX[i])
+			return(true);
+	}
+	return(false);
+}
+bool check_double(std::string to_compare)
+{
+	std::string MAX = "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000";
+	std::string MIN = "-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000";
+
+	if (to_compare[0] == '-')
+	{
+		if (to_compare.length() > MIN.length())
+			return(true);
+
+		if (to_compare.length() < MIN.length())
+			return(false);
+
+		for (size_t i = 0; i < to_compare.length(); i++)
+		{
+
+			if (to_compare[i] < MIN[i])
+				return(true);
+		}
+		return(false);
+	}
+
+	if (to_compare.length() > MAX.length())
+		return(true);
+
+	if (to_compare.length() < MAX.length())
+		return(false);
+
+	for (size_t i = 0; i < to_compare.length(); i++)
+	{
+		if (to_compare[i] > MAX[i])
+			return(true);
+	}
+	return(false);
+}
+
 void im_int(std::string &literal){
 
 	int 	val = std::atoi(literal.c_str());
-	double	tmp = std::atof(literal.c_str());
-	if (tmp > std::numeric_limits<int>::max() || tmp < std::numeric_limits<int>::min())
+
+	if (check_int(literal))
 		std::cout << "ERROR, CANT CAST TO INT WHIOUT OVERFLOW" << std::endl;
 	else
 	{
@@ -59,23 +167,27 @@ void im_int(std::string &literal){
 			std::cout << "char: '" << c << "'" << std::endl;
 		else
 			std::cout << "char: Non displayeable" << std::endl;
+	
 		std::cout << "int: " << val << std::endl;
+	
 		if (f != static_cast<int>(f))
 			std::cout << "float: " << f << "f" << std::endl;
 		else
 			std::cout << "float: " << f << ".0f" << std::endl;
+	
 		if (d != static_cast<int>(d))
 			std::cout << "double: " << d << std::endl;
 		else
 			std::cout << "double: " << d << ".0" << std::endl;
-	
 	}
 }
 
 void im_float(std::string &literal){
+
 	float 	val = std::atof(literal.c_str());
-	double	tmp = std::atof(literal.c_str());
-	if (tmp > std::numeric_limits<float>::max() || tmp < std::numeric_limits<float>::min())
+	//double	tmp = std::atof(literal.c_str());
+
+	if (check_float(literal))
 		std::cout << "ERROR, CANT CAST TO FLOAT WHIOUT OVERFLOW" << std::endl;
 	else
 	{
@@ -89,14 +201,17 @@ void im_float(std::string &literal){
 			std::cout << "char: '" << c << "'" << std::endl;
 		else
 			std::cout << "char: Non displayeable" << std::endl;
+
 		if (val > (float)std::numeric_limits<int>::max() || val < (float)std::numeric_limits<int>::min())
 			std::cout << "int: impossible" << std::endl;
 		else
 			std::cout << "int: " << i << std::endl;
+
 		if (val != static_cast<int>(val))
 			std::cout << "float: " << val << "f" << std::endl;
 		else
 			std::cout << "float: " << val << ".0f" << std::endl;
+		
 		if (d != static_cast<int>(d))
 			std::cout << "double: " << d << std::endl;
 		else
@@ -105,7 +220,8 @@ void im_float(std::string &literal){
 }
 
 void im_double(std::string &literal){
-	if (literal.length() > 308)
+	
+	if (check_double(literal))
 		std::cout << "ERROR, CANT CAST TO FLOAT WHIOUT OVERFLOW" << std::endl;
 	else
 	{
@@ -120,16 +236,19 @@ void im_double(std::string &literal){
 			std::cout << "char: '" << c << "'" << std::endl;
 		else
 			std::cout << "char: Non displayeable" << std::endl;
+		
 		if (val > (float)std::numeric_limits<int>::max() || val < (float)std::numeric_limits<int>::min())
 			std::cout << "int: impossible" << std::endl;
 		else
 			std::cout << "int: " << i << std::endl;
+		
 		if (val > std::numeric_limits<float>::max() || val < std::numeric_limits<float>::min())
 			std::cout << "float: impossible" << std::endl;
 		else if (f != static_cast<int>(f))
 			std::cout << "float: " << f << "f" << std::endl;
 		else
 			std::cout << "float: " << f << ".0f" << std::endl;
+		
 		if (val != static_cast<int>(val))
 			std::cout << "double: " << val << std::endl;
 		else
@@ -147,7 +266,8 @@ void	ScalarConverter::convert(std::string &literal){
 		type = 4;
 	if (literal == "-inf" || literal == "-inff")
 		type = 5;
-	if (literal == "+inf" || literal == "+inf")
+	if (literal == "+inf" || literal == "inf"
+	|| literal == "+inff" || literal == "inff")
 		type = 6;
 
 	for (size_t i = 0; i < literal.length() && type == 0; i++)
@@ -197,20 +317,20 @@ void	ScalarConverter::convert(std::string &literal){
 	case 4:
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
+		std::cout << "float: " << std::numeric_limits<float>::quiet_NaN() << "f" << std::endl;
+		std::cout << "bouble: " << std::numeric_limits<double>::quiet_NaN() << std::endl;
 		break;
 	case 5:
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inf" << std::endl;
+		std::cout << "float: " << std::numeric_limits<float>::infinity() * -1 << "f" << std::endl;
+		std::cout << "bouble: " << std::numeric_limits<double>::infinity() * -1 << std::endl;
 		break;
 	case 6:
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: +inff" << std::endl;
-		std::cout << "double: +inf" << std::endl;
+		std::cout << "float: " << std::numeric_limits<float>::infinity() << "f" << std::endl;
+		std::cout << "bouble: " << std::numeric_limits<double>::infinity() << std::endl;
 		break;
 	default:
 		break;
