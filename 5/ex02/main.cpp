@@ -22,10 +22,19 @@ int main()
 	ShrubberyCreationForm	a12(target);
 	RobotomyRequestForm		a22(target);
 	PresidentialPardonForm	a32(target);
-	std::string				reason;
 
 	std::cout << HBLU << paco << RST << std::endl;
 	std::cout << HMAG << a32 << RST << std::endl;
+
+	try
+	{
+		sebas.executeForm(a12);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
 
 	paco.signForm(a12);
 	paco.signForm(a22);

@@ -6,6 +6,7 @@
 #include <typeinfo>
 #include <stdlib.h>
 #include <iomanip>
+#include <errno.h>
 
 class	ScalarConverter
 {

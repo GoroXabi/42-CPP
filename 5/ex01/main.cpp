@@ -12,22 +12,25 @@
 
 int main()
 {
-	Bureaucrat		paco("sebas", 70);
+	Bureaucrat		sebas("sebas", 70);
 	Form			a32("a32", 60, 15);
 
-	std::cout << HBLU << paco << RST << std::endl;
+	std::cout << HBLU << sebas << RST << std::endl;
 	std::cout << HMAG << a32 << RST << std::endl;
 
 	try
 	{
-		Form	a34("a34", 75, 25);
+		Form	a34("a34", -1, 25);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << HRED << e.what() << RST << std::endl;
 	}
 
-	paco.signForm(a32);
 
+	sebas.signForm(a32);
+	for (size_t i = 0; i < 30; i++)	
+		sebas.promote();
+	sebas.signForm(a32);
 	return (0);
 };

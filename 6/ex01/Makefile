@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= serializer
 SRC			:= main.cpp Serializer.cpp 
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++

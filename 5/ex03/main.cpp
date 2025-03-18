@@ -23,7 +23,6 @@ int main()
 	Bureaucrat				paco("paco", 10);
 	Bureaucrat				sebas("sebas", 1);
 	ShrubberyCreationForm	a12(target);
-	//RobotomyRequestForm		a22(target);
 	PresidentialPardonForm	a32(target);
 	std::string				reason;
 

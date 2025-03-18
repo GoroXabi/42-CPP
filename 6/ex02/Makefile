@@ -1,5 +1,5 @@
-NAME		:= default
-SRC			:= A.cpp Base.cpp B.cpp C.cpp main.cpp 
+NAME		:= identify
+SRC			:= Base.cpp A.cpp B.cpp C.cpp main.cpp 
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f

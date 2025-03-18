@@ -5,16 +5,11 @@
 
 class	Base
 {
-private:
-
 public:
 
 /*--------------------DESTRUCTORS--------------------*/
 
 	virtual ~Base();
-
-/*-----------------PUBLIC_FUNCTIONS------------------*/
-
 };
 
 #endif

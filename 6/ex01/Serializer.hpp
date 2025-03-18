@@ -11,7 +11,6 @@ struct Data
 	int 		id;
 };
 
-
 class	Serializer
 {
 private:

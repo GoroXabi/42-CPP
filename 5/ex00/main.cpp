@@ -20,7 +20,7 @@ int main()
     try
     {
         paco = Bureaucrat("paco", 500);
-        Bureaucrat jaime("paco", 0);
+        tulio = Bureaucrat("jaime", 0);
     }
     catch(const std::exception& e)
     {

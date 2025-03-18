@@ -45,9 +45,8 @@ void identify(Base* p){
 Base *generate(void){
 
 	srand (time(NULL));
-	int val = rand() % 3; 
 
-	switch (val)
+	switch ((rand() % 3) + 1)
 	{
 	case 1:
 	{

@@ -74,7 +74,7 @@ void	Bureaucrat::signForm(Form &form) {
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << _name << " couldn't sign " << form.getName() << e.what() << std::endl;
+		std::cerr << _name << " couldn't sign " << form.getName() << "\033[91m " << e.what() << "\033[0m" << std::endl;
 	}
 	
 }

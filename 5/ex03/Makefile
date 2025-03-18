@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= bureaucrat
 SRC			:= AForm.cpp Bureaucrat.cpp main.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++

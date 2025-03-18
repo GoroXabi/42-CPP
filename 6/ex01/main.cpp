@@ -1,6 +1,12 @@
 #include <iostream>
 #include "Serializer.hpp"
 
+#define HRED	"\033[91m"
+#define HBLU	"\033[94m"
+#define HGRE	"\033[92m"
+#define HMAG	"\033[95m"
+#define RST		"\033[0m"
+
 
 int main() {
 	
@@ -12,9 +18,13 @@ int main() {
 	data.name = "aaaa";
 	data.writter = "me";
 
+	std::cout << HBLU;
+
 	std::cout << data.id << std::endl;
 	std::cout << data.name << std::endl;
 	std::cout << data.writter << std::endl;
+
+	std::cout << HGRE;
 
 	std::cout << ptr->id << std::endl;
 	std::cout << ptr->name << std::endl;
@@ -22,10 +32,13 @@ int main() {
 
 	ptr = Serializer::deserialize(uptr);
 
+	std::cout << HMAG;
+
 	std::cout << ptr->id << std::endl;
 	std::cout << ptr->name << std::endl;
 	std::cout << ptr->writter << std::endl;
 
+	std::cout << RST;
 
 	return 0;
 }
