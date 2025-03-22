@@ -72,7 +72,6 @@ int RPN::calculate(std::string line)
 			throw std::runtime_error("Error");
 		else
 			stack.push(*it - '0');
-		
 	}
 	if (stack.size() != 1)
 		throw std::runtime_error("Error");

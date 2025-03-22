@@ -147,7 +147,7 @@ std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence
 		= (pend.size() > pos_jacob) ? pend.begin() + pos_jacob - 1 : pend.end() - 1;
 		std::cout << pend_it->back() << std::endl;
 		//pend_it = (pend_it == pend.end()) ? pend.begin() : pend_it;
-		for(;pend_it != pend.begin(); pend_it--)
+		for(;pend_it >= pend.begin(); pend_it--)
 		{
 			/////////////////^^^^^^^^^^^////////////////////
 			std::cout << "to pend : " << pend_it->back() << std::endl;
@@ -164,13 +164,19 @@ std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence
 					main.insert(c_it, *pend_it);
 					break;
 				}
-				if (c_it + 1 == main_it)
-					main.insert(c_it, *pend_it);
+				else if (c_it + 1 == main_it)
+				{
+					main.insert(c_it + 1, *pend_it);
+					break;
+				}
 			}
+				std::cout << "after insertion: " << std::endl;
+				print_secuence(main);
 		}
 		print_secuence(pend);
 		std::cout << " ********* " << std::endl;
-		std::cout << "erase " << std::endl;
+		std::cout << "erase v" << std::endl;
+		std::cout << " ********* " << std::endl;
 		pend.erase(pend.begin(),
 		(pend.size() > pos_jacob) ? pend.begin() + pos_jacob : pend.end());
 		print_secuence(pend);
@@ -203,7 +209,21 @@ std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence
 	}
  */
 	if (secuence.size() % 2)
-		main.push_back(secuence.back());
+	{
+		for(std::vector<std::vector<int> >::iterator c_it = main.begin(); c_it != main.end(); c_it++)
+		{				
+			if (c_it->back() > secuence.back().back())	
+				{
+					main.insert(c_it, secuence.back());
+					break;
+				}
+				else if (c_it == secuence.end() - 1)
+				{
+					main.push_back(secuence.back());
+					break;
+				}
+		}
+	}
 	
 	print_secuence(main);
 	std::cout << "^" << std::endl;
@@ -214,14 +234,18 @@ std::vector<std::vector<int> > calculate(std::vector<std::vector<int> > secuence
 void PmergeMe::calculateVector()
 {
 	std::vector<std::vector<int> > secuence;
-	std::vector<int> init;
-	/* 
-	size_t count = 104;
+	//std::vector<int> init;
+ 
+	size_t count = 40;
 	for (size_t i = 0; i < count; i++)
+	{
+		std::vector<int> init;
 		init.push_back(rand() % 100);
-	 */
+		secuence.push_back(init);
+	}
+
 	//11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
-	init.push_back(11);
+/* 	init.push_back(11);
 	init.push_back(2);
 	init.push_back(17);
 	init.push_back(0);
@@ -248,7 +272,7 @@ void PmergeMe::calculateVector()
 		std::vector<int>v;
 		v.push_back(*it);
 		secuence.push_back(v);
-	}
+	}*/
 	secuence = calculate(secuence);
 	print_secuence(secuence);
 }
