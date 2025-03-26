@@ -87,6 +87,7 @@ public:
 
 #endif
 EOL
+
 cpp_names=$(ls | grep .cpp | tr -s '\n' ' ')
   cat <<EOL > "Makefile"
 NAME		:= default

@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= iter
 SRC			:= main.cpp 
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++

@@ -1,8 +1,6 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <iostream>
-
 template <typename T>
 class	Array
 {
@@ -18,6 +16,7 @@ public:
 	Array(const Array &model);
 	Array &operator=(const Array &model);
 	T	&operator[](unsigned int idx);
+	T	&operator*();
 
 /*--------------------DESTRUCTORS--------------------*/
 
@@ -27,5 +26,7 @@ public:
 
 	unsigned int	size(void) const;
 };
+
+#include "Array.tpp"
 
 #endif

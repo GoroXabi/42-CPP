@@ -48,9 +48,14 @@ Array<T>::~Array() {
 
 template <typename T>
 T	&Array<T>::operator[](unsigned int idx){
-	if (idx > _size)
-		throw std::out_of_range("HECHA EL FRENO MADALENO\n");
+	if (idx >= _size)
+		throw std::out_of_range("PUT THE BREAK CUPCAKE");
 	return (_data[idx]);
+}
+
+template <typename T>
+T	&Array<T>::operator*(){
+	return (*_data);
 }
 
 template <typename T>

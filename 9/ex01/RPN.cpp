@@ -40,7 +40,11 @@ int	choose(int left, int rigth, char op)
 	if (op == '*')
 		return(left * rigth);
 	if (op == '/')
+	{
+		if (rigth == 0)
+			throw std::logic_error("Error");
 		return(left / rigth);
+	}
 	return(0);
 }
 

@@ -2,8 +2,8 @@ NAME		:= whatever
 SRC			:= main.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
-RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
+RM			:= rm -f
+CPPFLAGS	:= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 all: $(NAME)
 
