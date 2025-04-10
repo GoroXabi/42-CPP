@@ -11,11 +11,11 @@ class	Span
 private:
 	std::vector<int>	data;
 	unsigned int		size;
+	Span();
 public:
 
 /*--------------------CONSTRUCTORS-------------------*/
 
-	Span();
 	Span(unsigned int N);
 	Span(const Span &model);
 	Span &operator=(const Span &model);

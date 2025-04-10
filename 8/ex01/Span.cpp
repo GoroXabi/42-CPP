@@ -39,36 +39,36 @@ Span::~Span() {
 
 void	Span::addNumber(int n){
 	if (data.capacity() - data.size() == 0)
-		throw std::out_of_range("No te pases mendrugo");
+		throw std::out_of_range("no space left in the Span");
 	data.push_back(n);
 }
 
 unsigned int	Span::shortestSpan(){
 	
 	if (data.size() < 2)
-		throw std::length_error("No puc");	
+		throw std::length_error("Cant compare whit less than two elements");	
 
 	std::vector<int> tmp(data);
 
 	std::sort(tmp.begin(), tmp.end());
 
-	unsigned int max = std::numeric_limits<unsigned int>::max();
+	unsigned int max = tmp.back() - tmp.front();
 
 	for (std::vector<int>::iterator it = tmp.begin(); it != (tmp.end() - 1); it++)
 		if (max > (unsigned int)(*(it + 1) - *it))
 			max = (unsigned int)(*(it + 1) - *it);
+
 	return(max);
 }
 
 unsigned int	Span::longestSpan(){
 	
 	if (data.size() < 2)
-		throw std::length_error("No puc");	
+		throw std::length_error("Cant compare whit less than two elements");	
 
 	std::vector<int> tmp(data);
 
 	std::sort(tmp.begin(), tmp.end());
 
 	return(tmp.back() - tmp.front());
-
 }

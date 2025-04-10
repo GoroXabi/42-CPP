@@ -16,13 +16,12 @@ int main() {
 	for (size_t i = 0; i < 5; i++)
 		list.push_back(i);
 
-	easyfind(vector, 2);
-	easyfind(deque, 0);
-	easyfind(list, 5);
-
-	easyfind(vector, 2, 1);
-	easyfind(deque, 0, 1);
-	easyfind(list, 5, 1);
+	std::cout << "(vector, 2 ): " << easyfind(vector, 2) << std::endl;
+	std::cout << "(vector, 2, func find ): " << easyfind(vector, 2, 1) << std::endl;
+	std::cout << "(deque, 0 ): " << easyfind(deque, 0) << std::endl;
+	std::cout << "(deque, 0, func find ): " << easyfind(deque, 0, 1) << std::endl;
+	std::cout << "(list, 5 ): " << easyfind(list, 5) << std::endl;
+	std::cout << "(list, 5, func find ): " << easyfind(list, 5, 1) << std::endl;
 
 	return 0;
 }

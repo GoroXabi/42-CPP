@@ -3,12 +3,9 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <vector>
 #include <map>
-#include <typeinfo>
 #include <cstdlib>
-#include <boost/date_time/gregorian/gregorian.hpp>
+#include <limits>
 
 class	BitcoinExchange
 {
@@ -29,7 +26,6 @@ public:
 		bool operator<=(const Date &to_compare) const;
 		bool operator==(const Date &to_compare) const;
 		bool operator!=(const Date &to_compare) const;
-		std::string operator<<(const Date &to_compare) const;
 	};
 
 /*--------------------CONSTRUCTORS-------------------*/
@@ -50,5 +46,6 @@ public:
 private:
 	std::map<Date, float>	data;
 };
+	std::ostream &operator<<(std::ostream &ret,const BitcoinExchange::Date &date);
 
 #endif

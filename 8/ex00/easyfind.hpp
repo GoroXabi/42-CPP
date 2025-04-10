@@ -8,20 +8,20 @@
 #include <algorithm>
 
 template <typename T>
-bool	easyfind(T container, int n, bool b){
-	
-	(void)b;
+bool	easyfind(T container, int n, bool flag)
+{
+	(void)flag;
 	if (find(container.begin(), container.end(), n) != container.end())
 	{
 		std::cout << "the element " << n << " is found" << std::endl;
 		return(0);
 	}
 	return(1);
-	
 }
 
 template <typename T>
-bool	easyfind(T container, int n){
+bool	easyfind(T container, int n)
+{
 	for (typename T::iterator it = container.begin(); it != container.end(); it++)
 	{
 		if (*it == n)
@@ -31,7 +31,6 @@ bool	easyfind(T container, int n){
 		}
 	}
 	return(1);
-	
 }
 
 #endif

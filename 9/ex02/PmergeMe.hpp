@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 #include <deque>
 #include <typeinfo>
 #include <cstdio>
@@ -10,6 +11,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
+#include <cmath>
 
 #define HRED	"\033[91m"
 #define HBLU	"\033[94m"
@@ -35,9 +37,14 @@ private:
 public:
 
 	static void calculateVector(void);
+	static void calculateList(void);
 	static void calculateDque(void);
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
 };
+
+void print_secuence(std::list<int> secuence);
+std::list<int>::iterator aait(std::list<int> &list, size_t idx);
+
 
 #endif

@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= MutantStack
 SRC			:= main.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++

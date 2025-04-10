@@ -151,16 +151,20 @@ BitcoinExchange::~BitcoinExchange() {
 
 bool	tryDate(std::string str_date)
 {
-	try
-	{
-		boost::gregorian::date date(boost::gregorian::from_simple_string(str_date));
-		(void)date;
-		return true;
-	}
-	catch(...)
-	{
-		return false;
-	}
+	int months[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	int y, m, d;
+	size_t f_del = str_date.find('-');
+	size_t s_del = str_date.find_last_of('-');
+
+	y = atoi(str_date.substr(0, f_del).c_str());
+	m = atoi(str_date.substr(f_del, s_del).c_str() + 1);
+	d = atoi(str_date.substr(s_del, str_date.npos).c_str() + 1);
+
+	if ((m == 2 && d == 29) && ((y % 4 != 0) || (y % 100 == 0 && y % 400 != 0)))
+		return(false);
+	if (d > months[m])
+		return(false);
+	return(true);
 }
 
 void	BitcoinExchange::getData()
@@ -203,7 +207,9 @@ void	BitcoinExchange::calculate(std::string input_name)
 				std::cout << "Error: too large a number." << std::endl;
 			else
 			{
-				if (data.find(date) != data.end())
+				if (date < data.begin()->first)
+					std::cout << "Error: bad input => " << buffer << std::endl;
+				else if (data.find(date) != data.end())
 					std::cout << date << " => " << number << " = " << data.find(date)->second * number <<std::endl;
 				else
 					std::cout << date << " => " << number << " = " << (--data.lower_bound(date))->second * number <<std::endl;
