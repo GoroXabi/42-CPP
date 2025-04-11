@@ -12,6 +12,7 @@
 #include <time.h>
 #include <algorithm>
 #include <cmath>
+#include <iterator>
 
 #define HRED	"\033[91m"
 #define HBLU	"\033[94m"
@@ -44,7 +45,21 @@ public:
 };
 
 void print_secuence(std::list<int> secuence);
-std::list<int>::iterator aait(std::list<int> &list, size_t idx);
+
+template <typename T>
+typename T::iterator aait(T &list, size_t idx)
+{
+	if (idx > list.size())
+		return(list.end());
+	if (idx == 0)
+		return(list.begin());
+	
+	typename T::iterator it = list.begin();
+	for (size_t i = 0; i < idx; i++)
+		it++;
+
+	return(it);
+}
 
 
 #endif
