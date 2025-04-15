@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-int main() {
+int main(int argc, char **argv) {
 
 /*     std::list<int> list;
     std::list<int> list2;
@@ -24,7 +24,11 @@ int main() {
     print_secuence(list);
     print_secuence(list2); */
 
-    PmergeMe::calculateList();
+    if (argc < 2)
+        PmergeMe::calculateList(10);
+    else
+        PmergeMe::calculateList((size_t)atoi(argv[1]));
+
     return 0;
 
 }

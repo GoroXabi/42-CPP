@@ -38,8 +38,9 @@ private:
 public:
 
 	static void calculateVector(void);
-	static void calculateList(void);
+	static void calculateList(size_t elements);
 	static void calculateDque(void);
+	static int comparations;
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
 };
@@ -53,7 +54,7 @@ typename T::iterator aait(T &list, size_t idx)
 		return(list.end());
 	if (idx == 0)
 		return(list.begin());
-	
+
 	typename T::iterator it = list.begin();
 	for (size_t i = 0; i < idx; i++)
 		it++;

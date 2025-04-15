@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+
+
 /*--------------------------------------------------------------*/
 /*							CONSTRUCTORS						*/
 /*--------------------------------------------------------------*/
@@ -73,6 +75,8 @@ std::list<std::list<int> > unite(std::list<std::list<int> > secuence)
 		std::list<std::list<int> >::iterator first_it = it++;
 		std::list<std::list<int> >::iterator second_it = it;
 
+		PmergeMe::comparations++;
+
 		if (first_it->back() <= second_it->back())
 		{
 			tmp = *first_it;
@@ -120,13 +124,22 @@ bool is_shorted(std::list<std::list<int> > secuence)
 		if (tmp == secuence.end())
 			break;
 		if (it->back() > (tmp)->back())
+		{
+			std::cout << it->back() << "is greater than " << (tmp)->back() << std::endl;
 			return(false);
+		}
 	}
 	return(true);
 
 }
 
 #define nextJacobsthal(n_jacobsthal) ((pow(2, n_jacobsthal)) - (pow(-1, n_jacobsthal))) / 3
+
+bool myComp(const int leftList, const std::list<int> rigthList)
+{
+	PmergeMe::comparations++;
+	return(leftList < rigthList.back());
+}
 
 std::list<std::list<int> > insertePendIntoMain(
 	std::list<std::list<int> > &main,
@@ -147,32 +160,22 @@ std::list<std::list<int> > insertePendIntoMain(
 			jacobsthal = 1;
 
 		int tmp_jacobsthal = jacobsthal;
- 		while(tmp_jacobsthal > 0)
+
+/* 		if(tmp_jacobsthal == 1)
+		{
+			std::list<std::list<int> >::iterator bN = pend.begin();
+			std::list<std::list<int> >::iterator aN = *it_list.begin();
+			aN++;
+			main.insert(std::upper_bound(main.begin(), aN, bN->back(), myComp), *bN);
+			tmp_jacobsthal--;
+		}
+		 */
+		while(tmp_jacobsthal > 0)
 		{		
 			std::list<std::list<int> >::iterator bN = aait(pend, tmp_jacobsthal - 1);
 			std::list<std::list<int> >::iterator aN = *aait(it_list, tmp_jacobsthal - 1);
-
-			for (; aN != main.begin();)
-			{
-				if (aN->back() < bN->back())
-				{
-					aN++;
-					main.insert(aN, *bN);
-					break;
-				}
-				--aN;
-				if (aN == main.begin())
-				{
-					if (aN->back() < bN->back())
-					{
-						aN++;
-						main.insert(aN, *bN);
-					}
-					else
-						main.push_front(*bN);
-					break;
-				}
-			}
+			aN++;
+			main.insert(std::upper_bound(main.begin(), aN, bN->back(), myComp), *bN);
 			tmp_jacobsthal--;
 		}
 
@@ -184,31 +187,9 @@ std::list<std::list<int> > insertePendIntoMain(
 		n_jacobsthal++;
 	}
 	return(main);
-	
 }
 
-void prueba(std::list<std::list<std::list<int> >::iterator> it_list, size_t n)
-{
-	std::cout << it_list.size() << std::endl;
-	std::list<std::list<std::list<int> >::iterator>::iterator it;
-	if (it_list.size() == 0 || n == 0)
-		return;
-	if (n > it_list.size())
-		it = aait(it_list, it_list.size() - 1);
-	else
-		it = aait(it_list, n - 1);
-	for (; it != it_list.begin(); --it)
-	{
-		std::list<std::list<int> >::iterator tmp = *it;
-		std::cout << tmp->back() << " ";
-	}
-	std::list<std::list<int> >::iterator tmp = *it;
-	std::cout << tmp->back() << " ";
-	std::cout << std::endl;
-	
-}
-
-void printaN(std::list<std::list<int> > secuence, std::list<std::list<std::list<int> >::iterator> it_list)
+/* void printaN(std::list<std::list<int> > &secuence, std::list<std::list<std::list<int> >::iterator> &it_list)
 {
 	print_secuence(secuence);
 
@@ -225,24 +206,25 @@ void printaN(std::list<std::list<int> > secuence, std::list<std::list<std::list<
 	}
 	else
 		std::cout << "no ";
-
-
-}
+} */
 void insert(std::list<std::list<int> > &secuence)
 {
 	std::list<std::list<int> > pend;
 	std::list<std::list<std::list<int> >::iterator> it_list;
 	int noRandomAccess = 3;
 
-	for (std::list<std::list<int> >::iterator it = aait(secuence, 3); it != secuence.end(); it++)
+	if (secuence.size() <= 3)
+		it_list.push_back(aait(secuence, 1));
+	else
 	{
-		if(noRandomAccess % 2)
-			it_list.push_back(aait(secuence, noRandomAccess));
-		noRandomAccess++;		
-	}
-	if (secuence.size() % 2)
-	{
-		it_list.push_back(it_list.back());
+		for (std::list<std::list<int> >::iterator it = aait(secuence, 3); it != secuence.end(); it++)
+		{
+			if(noRandomAccess % 2)
+				it_list.push_back(aait(secuence, noRandomAccess));
+			noRandomAccess++;		
+		}
+		if (secuence.size() % 2)
+			it_list.push_back(it_list.back());
 	}
 
 	std::cout << "--------------------" << std::endl;
@@ -263,10 +245,6 @@ void insert(std::list<std::list<int> > &secuence)
 	secuence = insertePendIntoMain(secuence, pend, it_list);
 	std::cout << "after insert: ";
 	print_secuence(secuence);
-	
-
-
-
 }
 
 std::list<std::list<int> > calculate(std::list<std::list<int> > secuence)
@@ -292,24 +270,34 @@ std::list<std::list<int> > calculate(std::list<std::list<int> > secuence)
 		secuence.push_back(rest);
 
 	insert(secuence);
-	//print_secuence(secuence);
 	return (secuence);
 }
 
-void PmergeMe::calculateList()
+int F(int n)
+{
+    int sum = 0;
+    for (int k = 1; k <= n; ++k) {
+        double value = (3.0 / 4.0) * k;
+        sum += static_cast<int>(ceil(log2(value)));
+    }
+    return sum;
+}
+int PmergeMe::comparations = 0;
+
+void PmergeMe::calculateList(size_t elements)
 {
 	std::list<std::list<int> > secuence;
 	//std::list<int> init;
  
 	srand(time(NULL));
-	for (size_t i = 0; i < 10000; i++)
+	for (size_t i = 0; i < elements; i++)
 	{
 		std::list<int> init;
-		init.push_back(rand() % 10000);
+		init.push_back(rand() % elements);
 		secuence.push_back(init);
 	}
 
-	//11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
+	//11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13
 /* 	init.push_back(11);
 	init.push_back(2);
 	init.push_back(17);
@@ -339,7 +327,9 @@ void PmergeMe::calculateList()
 		v.push_back(*it);
 		secuence.push_back(v);
 	} */
+	comparations = 0 ;
 	secuence = calculate(secuence);
 	std::cout << (is_shorted(secuence) ? "IS SHORTED" : "FUCK") << std::endl;
-	//print_secuence(secuence);
+	std::cout <<  secuence.size() << " elements, " << "worst case : " << F(secuence.size()) << std::endl;
+	std::cout <<  secuence.size() << " elements, " << "comparations done : " << comparations << std::endl;
 }
