@@ -37,15 +37,15 @@ private:
 
 public:
 
-	static void calculateVector(void);
-	static void calculateList(size_t elements);
-	static void calculateDque(void);
+	static void shortVector(size_t elements);
+	static void shortList(size_t elements);
 	static int comparations;
 /*-----------------PUBLIC_FUNCTIONS------------------*/
 
 };
 
 void print_secuence(std::list<int> secuence);
+void print_secuence(std::vector<int> secuence);
 
 template <typename T>
 typename T::iterator aait(T &list, size_t idx)
