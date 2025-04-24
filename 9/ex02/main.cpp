@@ -1,120 +1,57 @@
 #include <iostream>
 #include "PmergeMe.hpp"
+#include <limits>
 #include <time.h>
+#include <errno.h>
 
 int main(int argc, char **argv) {
- 
+
+    std::list<int> list;
+    std::vector<int> vector;
+
+    errno = 0;
+    char *err;
+
     if (argc < 2)
     {
-        PmergeMe::shortList(10);
-        PmergeMe::shortVector(10);
+        std::cout << "Error" << std::endl;
+        return(1);
     }
-    else
+    if ((std::string)argv[1] == "-test")
     {
-        PmergeMe::shortList((size_t)atoi(argv[1]));
-        PmergeMe::shortVector((size_t)atoi(argv[1]));
+        if (argc != 3)
+        {
+            std::cout << HGRE"In the test mode the input whill be the number of elements of the secuence."<< RST << std::endl;
+            return(1);
+        }
+        double tmp = std::strtod(argv[2], &err);
+        std::cout << tmp << errno << *err << std::endl;
+        if (errno != 0 || *err != 0 || (tmp > std::numeric_limits<int>::max()) || (tmp < 0))
+        {
+            std::cout << HRED"Not a valid imput for test mode" << RST << std::endl;
+            return(1);
+        }
+        winsize w;
+	    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	    std::cout << HGRE << std::setw(w.ws_col/2 + 5) << std::setfill('-') << "TEST MODE:" << std::setw(w.ws_col/2 - 5) << std::setfill('-') << '-' << std::endl << std::endl;
+        PmergeMe::shortList((int)tmp);
+        PmergeMe::shortVector((int)tmp);
+	    std::cout << HGRE << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl;
+        return(0);
     }
 
+    for (int i = 1; i < argc; i++)
+    {
+        double tmp = std::strtod(argv[i], &err);
+        if (errno != 0 || *err != 0 || (tmp > std::numeric_limits<int>::max()) || (tmp < 0))
+        {
+            std::cout << "Error" << std::endl;
+            return(1);
+        }
+        list.push_back((int)tmp);
+        vector.push_back((int)tmp);
+    }
+    PmergeMe::shortList(list);
+    PmergeMe::shortVector(vector);
     return 0;
-
 }
-
-
-/* 
-    std::list<int> lista;
-
-    lista.push_back(1);
-    lista.push_back(2);
-    lista.push_back(3);
-    lista.push_back(4);
-    lista.push_back(5);
-    lista.push_back(6);
-
-    print_secuence(lista);
-
-    std::list<std::list<int>::iterator > it_list;
-
-    for (std::list<int>::iterator it = lista.begin(); it != lista.end(); it++)
-    {
-        if (!(*it % 2))
-            it_list.push_back(it);
-    }
-    
-    std::cout << **it_list.begin() << " ... " << *it_list.back() << std::endl;
-
-
-    for (std::list<int>::iterator it = lista.begin(); it != lista.end();)
-    {
-        std::list<int>::iterator tmp = it++;
-        if ((*tmp % 2))
-        {
-            lista.erase(tmp);
-        }
-    }
-
-    print_secuence(lista);
-
-
-    for (std::list<std::list<int>::iterator>::iterator it = it_list.begin(); it != it_list.end(); it++)
-        std::cout << HRED << **it << std::endl;
-
-    lista.push_front(5);
-    lista.push_front(3);
-    lista.push_front(1);
-    
-    print_secuence(lista);
-
-
-    for (std::list<std::list<int>::iterator>::iterator it = it_list.begin(); it != it_list.end(); it++)
-        std::cout << HRED << **it << std::endl;
-
-    std::cout << "..." <<  std::endl;
-
-    std::vector<int> vectore;
-
-    vectore.push_back(1);
-    vectore.push_back(2);
-    vectore.push_back(3);
-    vectore.push_back(4);
-    vectore.push_back(5);
-    vectore.push_back(6);
-
-    print_secuence(vectore);
-
-    std::vector<std::vector<int>::iterator> it_vectore;
-
-    for (std::vector<int>::iterator it = vectore.begin(); it != vectore.end(); it++)
-    {
-        if (!(*it % 2))
-            it_vectore.push_back(it);
-    }
-
-    std::cout << **it_vectore.begin() << " ... " << *it_vectore.back() << std::endl;
-
-
-    for (std::vector<int>::iterator it = vectore.begin(); it != vectore.end();)
-    {
-        std::vector<int>::iterator tmp = it++;
-        if ((*tmp % 2))
-        {
-            vectore.erase(tmp);
-        }
-    }
-
-    print_secuence(vectore);
-    for (std::vector<std::vector<int>::iterator>::iterator it = it_vectore.begin(); it != it_vectore.end(); it++)
-        std::cout << HRED << **it << std::endl;
-
-    vectore.push_back(1);
-    vectore.push_back(3);
-    vectore.push_back(5);
-
-    print_secuence(vectore);
-    
-    for (std::vector<std::vector<int>::iterator>::iterator it = it_vectore.begin(); it != it_vectore.end(); it++)
-        std::cout << HRED << **it << std::endl;
-
-
-    (void)argc;
-    (void)argv;
- */

@@ -1,18 +1,12 @@
 #include "PmergeMe.hpp"
 
-
-
 /*--------------------------------------------------------------*/
 /*							CONSTRUCTORS						*/
 /*--------------------------------------------------------------*/
 
-PmergeMe::PmergeMe() {
+PmergeMe::PmergeMe() {}
 
-}
-
-PmergeMe::PmergeMe(const PmergeMe &model) {
-	(void)model;
-}
+PmergeMe::PmergeMe(const PmergeMe &model) {(void)model;}
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &model) {
 	(void)model;
@@ -23,14 +17,12 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &model) {
 /*							DESTRUCTORS							*/
 /*--------------------------------------------------------------*/
 
-PmergeMe::~PmergeMe() {
+PmergeMe::~PmergeMe() {}
 
-}
 
 /*--------------------------------------------------------------*/
-/*						PUBLIC_FUNCTIONS						*/
+/*							   OTHER							*/
 /*--------------------------------------------------------------*/
-
 
 void myInsert(std::vector<std::vector<int> > &vectore, std::vector<std::vector<int> >::iterator iterator, std::vector<int> element, std::vector<int> &idxs)
 {
@@ -44,215 +36,10 @@ void myInsert(std::vector<std::vector<int> > &vectore, std::vector<std::vector<i
 
     vectore.insert(iterator, element);
 }
-void myErase(std::vector<int> &vectore, std::vector<int>::iterator &iterator, std::vector<int> &idxs)
-{
-    int idx = std::distance(vectore.begin(), iterator);
 
-    for (std::vector<int>::iterator it = idxs.begin(); it != idxs.end(); it++)
-    {
-        if (idx < *it)
-            (*it)--;
-    }
-
-    vectore.erase(iterator);
-}
-
-
-void print_secuence(std::list<std::list<int> > secuence)
-{
-	const char *colors[4] = {HRED, HGRE, HMAG, HBLU};
-	int color = 0;
-	for (std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::cout << colors[color];
-		std::cout << "[ ";
-		std::list<int> current = *it;
-		for (std::list<int>::iterator current_it = current.begin(); current_it != current.end(); current_it++)
-			std::cout << (*current_it <= 9 ? "0" : "") << *current_it << " ";
-		std::cout << "] ";
-		color++;
-		color = color > 3 ? 0 : color;
-	}
-	std::cout << std::endl;
-}
-void print_secuence(std::vector<std::vector<int> > secuence)
-{
-	const char *colors[4] = {HRED, HGRE, HMAG, HBLU};
-	int color = 0;
-	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::cout << colors[color];
-		std::cout << "[ ";
-		std::vector<int> current = *it;
-		for (std::vector<int>::iterator current_it = current.begin(); current_it != current.end(); current_it++)
-			std::cout << (*current_it <= 9 ? "0" : "") << *current_it << " ";
-		std::cout << "] ";
-		color++;
-		color = color > 3 ? 0 : color;
-	}
-	std::cout << std::endl;
-}
-void print_secuence(std::list<int> secuence)
-{
-	const char *colors[4] = {HRED, HGRE, HMAG, HBLU};
-	int color = 0;
-	for (std::list<int>::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::cout << colors[color];
-		std::cout << "[ ";
-		std::cout << (*it <= 9 ? "0" : "") << *it << " ";
-		std::cout << "] ";
-		color++;
-		color = color > 3 ? 0 : color;
-	}
-	std::cout << std::endl;
-}
-void print_secuence(std::vector<int> secuence)
-{
-	std::cout << "[ ";
-	for (std::vector<int>::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::cout << (*it <= 9 ? "0" : "") << *it << " ";
-	}
-	std::cout << "] ";
-	std::cout << std::endl;
-}
-
-std::list<std::list<int> > unite(std::list<std::list<int> > secuence)
-{
-	std::list<std::list<int> > new_secuence;
-	
-
-	for (std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::list<int> tmp;
-		std::list<std::list<int> >::iterator first_it = it++;
-		std::list<std::list<int> >::iterator second_it = it;
-
-		PmergeMe::comparations++;
-
-		if (first_it->back() <= second_it->back())
-		{
-			tmp = *first_it;
-			tmp.splice(tmp.end(), *second_it, second_it->begin(), second_it->end());
-		}
-		else
-		{
-			tmp = *second_it;
-			tmp.splice(tmp.end(), *second_it, first_it->begin(), first_it->end());
-		}
-		new_secuence.push_back(tmp);
-	}
-
-	return(new_secuence);
-}
-std::vector<std::vector<int> > unite(std::vector<std::vector<int> > secuence)
-{
-	std::vector<std::vector<int> > new_secuence;
-	
-
-	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end() - 1; it++)
-	{
-		std::vector<int> tmp;
-
-		PmergeMe::comparations++;
-
-
-		if (it->back() <= (it + 1)->back())
-		{
-			tmp = *it;
-			tmp.insert(tmp.end(), (it + 1)->begin(), (it + 1)->end());
-		}
-		else
-		{
-			tmp = *(it + 1);
-			tmp.insert(tmp.end(), (it)->begin(), (it)->end());
-		}
-		new_secuence.push_back(tmp);
-		it++;
-		if (it + 1 == secuence.end())
-			break; 
-	}
-
-	return(new_secuence);
-}
-
-std::list<int> splitList(std::list<int> &to_split)
-{
-	std::list<int> new_list;
-	size_t middle = to_split.size() / 2;
-
-	new_list.splice(new_list.begin(), to_split, to_split.begin(), aait(to_split, middle));
-	return (new_list);
-}
-std::vector<int> splitVector(std::vector<int> &to_split)
-{
-	size_t middle = to_split.size() / 2;
-	std::vector<int> new_vector(to_split.begin(), to_split.begin() + middle);
-	to_split.erase(to_split.begin(), to_split.begin()+ middle);
-	return (new_vector);
-}
-
-std::list<std::list<int> > divide(std::list<std::list<int> > secuence)
-{
-	std::list<std::list<int> > new_secuence;
-
-	for ( std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		new_secuence.push_back(splitList(*it));
-		new_secuence.push_back(*it);
-	}
-
-	return(new_secuence);
-}
-std::vector<std::vector<int> > divide(std::vector<std::vector<int> > secuence)
-{
-	std::vector<std::vector<int> > new_secuence;
-
-	for ( std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		new_secuence.push_back(splitVector(*it));
-		new_secuence.push_back(*it);
-	}
-
-	return(new_secuence);
-}
-
-bool is_shortedL(std::list<std::list<int> > secuence)
-{
-	for(std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::list<std::list<int> >::iterator tmp = it;
-		tmp++;
-		if (tmp == secuence.end())
-			break;
-		if (it->back() > (tmp)->back())
-		{
-			std::cout << it->back() << " is greater than " << (tmp)->back() << std::endl;
-			return(false);
-		}
-	}
-	return(true);
-
-}
-bool is_shortedV(std::vector<std::vector<int> > secuence)
-{
-	for(std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
-	{
-		std::vector<std::vector<int> >::iterator tmp = it;
-		tmp++;
-		if (tmp == secuence.end())
-			break;
-		if (it->back() > (tmp)->back())
-		{
-			std::cout << it->back() << " is greater than " << (tmp)->back() << std::endl;
-			return(false);
-		}
-	}
-	return(true);
-}
-
-#define nextJacobsthal(n_jacobsthal) ((pow(2, n_jacobsthal)) - (pow(-1, n_jacobsthal))) / 3
+/*--------------------------------------------------------------*/
+/*							UPPERBOUND							*/
+/*--------------------------------------------------------------*/
 
 bool myCompL(const int leftList, const std::list<int> rigthList)
 {
@@ -264,6 +51,10 @@ bool myCompV(const int leftVector, const std::vector<int> rigthVector)
 	PmergeMe::comparations++;
 	return(leftVector < rigthVector.back());
 }
+
+/*--------------------------------------------------------------*/
+/*							  INSERT							*/
+/*--------------------------------------------------------------*/
 
 std::list<std::list<int> > insertePendIntoMain(
 	std::list<std::list<int> > &main,
@@ -415,7 +206,116 @@ void insert(std::vector<std::vector<int> > &secuence)
 	secuence = insertePendIntoMain(secuence, pend, idxs);
 }
 
-std::list<std::list<int> > shortL(std::list<std::list<int> > secuence)
+/*--------------------------------------------------------------*/
+/*							   MERGE							*/
+/*--------------------------------------------------------------*/
+
+std::list<std::list<int> > unite(std::list<std::list<int> > secuence)
+{
+	std::list<std::list<int> > new_secuence;
+	
+
+	for (std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::list<int> tmp;
+		std::list<std::list<int> >::iterator first_it = it++;
+		std::list<std::list<int> >::iterator second_it = it;
+
+		PmergeMe::comparations++;
+
+		if (first_it->back() <= second_it->back())
+		{
+			tmp = *first_it;
+			tmp.splice(tmp.end(), *second_it, second_it->begin(), second_it->end());
+		}
+		else
+		{
+			tmp = *second_it;
+			tmp.splice(tmp.end(), *second_it, first_it->begin(), first_it->end());
+		}
+		new_secuence.push_back(tmp);
+	}
+
+	return(new_secuence);
+}
+
+std::vector<std::vector<int> > unite(std::vector<std::vector<int> > secuence)
+{
+	std::vector<std::vector<int> > new_secuence;
+	
+
+	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end() - 1; it++)
+	{
+		std::vector<int> tmp;
+
+		PmergeMe::comparations++;
+
+
+		if (it->back() <= (it + 1)->back())
+		{
+			tmp = *it;
+			tmp.insert(tmp.end(), (it + 1)->begin(), (it + 1)->end());
+		}
+		else
+		{
+			tmp = *(it + 1);
+			tmp.insert(tmp.end(), (it)->begin(), (it)->end());
+		}
+		new_secuence.push_back(tmp);
+		it++;
+		if (it + 1 == secuence.end())
+			break; 
+	}
+
+	return(new_secuence);
+}
+
+std::list<int> splitList(std::list<int> &to_split)
+{
+	std::list<int> new_list;
+	size_t middle = to_split.size() / 2;
+
+	new_list.splice(new_list.begin(), to_split, to_split.begin(), aait(to_split, middle));
+	return (new_list);
+}
+std::vector<int> splitVector(std::vector<int> &to_split)
+{
+	size_t middle = to_split.size() / 2;
+	std::vector<int> new_vector(to_split.begin(), to_split.begin() + middle);
+	to_split.erase(to_split.begin(), to_split.begin()+ middle);
+	return (new_vector);
+}
+
+std::list<std::list<int> > divide(std::list<std::list<int> > secuence)
+{
+	std::list<std::list<int> > new_secuence;
+
+	for ( std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		new_secuence.push_back(splitList(*it));
+		new_secuence.push_back(*it);
+	}
+
+	return(new_secuence);
+}
+std::vector<std::vector<int> > divide(std::vector<std::vector<int> > secuence)
+{
+	std::vector<std::vector<int> > new_secuence;
+
+	for ( std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		new_secuence.push_back(splitVector(*it));
+		new_secuence.push_back(*it);
+	}
+
+	return(new_secuence);
+}
+
+/*--------------------------------------------------------------*/
+/*						  RECURSIVE_LOOP						*/
+/*--------------------------------------------------------------*/
+
+std::list<std::list<int> > mergeInsertShort(std::list<std::list<int> > secuence)
 {
 	std::list<int> rest;
 
@@ -428,7 +328,7 @@ std::list<std::list<int> > shortL(std::list<std::list<int> > secuence)
 	secuence = unite(secuence);
 
  	if (secuence.size() > 1)
-		secuence = shortL(secuence);
+		secuence = mergeInsertShort(secuence);
 
 	secuence = divide(secuence);
 
@@ -436,9 +336,10 @@ std::list<std::list<int> > shortL(std::list<std::list<int> > secuence)
 		secuence.push_back(rest);
 
 	insert(secuence);
+
 	return (secuence);
 }
-std::vector<std::vector<int> > shortV(std::vector<std::vector<int> > secuence)
+std::vector<std::vector<int> > mergeInsertShort(std::vector<std::vector<int> > secuence)
 {
 	std::vector<int> rest;
 
@@ -451,7 +352,7 @@ std::vector<std::vector<int> > shortV(std::vector<std::vector<int> > secuence)
 	secuence = unite(secuence);
 
  	if (secuence.size() > 1)
-		secuence = shortV(secuence);
+		secuence = mergeInsertShort(secuence);
 
 	secuence = divide(secuence);
 	
@@ -463,6 +364,82 @@ std::vector<std::vector<int> > shortV(std::vector<std::vector<int> > secuence)
 
 	return (secuence);
 }
+
+/*--------------------------------------------------------------*/
+/*							UTIL_FUNCS							*/
+/*--------------------------------------------------------------*/
+
+void print_secuence(std::list<std::list<int> > secuence)
+{
+	for (std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::list<int> current = *it;
+		for (std::list<int>::iterator current_it = current.begin(); current_it != current.end(); current_it++)
+			std::cout << *current_it << " ";
+	}
+	std::cout << std::endl;
+}
+void print_secuence(std::vector<std::vector<int> > secuence)
+{
+	for (std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::vector<int> current = *it;
+		for (std::vector<int>::iterator current_it = current.begin(); current_it != current.end(); current_it++)
+			std::cout << *current_it << " ";
+	}
+	std::cout << std::endl;
+}
+void print_secuence(std::list<int> secuence)
+{
+	for (std::list<int>::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+void print_secuence(std::vector<int> secuence)
+{
+	for (std::vector<int>::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
+bool is_shorted(std::list<std::list<int> > secuence)
+{
+	for(std::list<std::list<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::list<std::list<int> >::iterator tmp = it;
+		tmp++;
+		if (tmp == secuence.end())
+			break;
+		if (it->back() > (tmp)->back())
+		{
+			std::cout << it->back() << " is greater than " << (tmp)->back() << std::endl;
+			return(false);
+		}
+	}
+	return(true);
+
+}
+bool is_shorted(std::vector<std::vector<int> > secuence)
+{
+	for(std::vector<std::vector<int> >::iterator it = secuence.begin(); it != secuence.end(); it++)
+	{
+		std::vector<std::vector<int> >::iterator tmp = it;
+		tmp++;
+		if (tmp == secuence.end())
+			break;
+		if (it->back() > (tmp)->back())
+		{
+			std::cout << it->back() << " is greater than " << (tmp)->back() << std::endl;
+			return(false);
+		}
+	}
+	return(true);
+}
+
 
 int F(int n)
 {
@@ -499,6 +476,11 @@ std::vector<std::vector<int> > randSecuenceV(size_t elements)
 	}
 	return(randSecuence);
 }
+
+/*--------------------------------------------------------------*/
+/*						PUBLIC_FUNCTIONS						*/
+/*--------------------------------------------------------------*/
+
 void PmergeMe::shortVector(size_t elements)
 {
 	std::vector<std::vector<int> > secuence;
@@ -506,30 +488,34 @@ void PmergeMe::shortVector(size_t elements)
 	double time_used = 0;
 
 	comparations = 0 ;
-	std::cout <<  HMAG"VECTOR" << std::endl;
+	winsize w;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	std::cout << HMAG << std::setw(w.ws_col/2 + 3) << std::setfill('-') << "VECTOR" << std::setw(w.ws_col/2 - 3) << std::setfill('-') << '-' << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
 		secuence = randSecuenceV(elements);
 		
 		clock_t start_time = clock();
 		if (elements != 1 && elements != 0)
-			secuence = shortV(secuence);
+			secuence = mergeInsertShort(secuence);
 		clock_t end_time = clock();
 		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
-		std::cout << ((is_shortedV(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
+		std::cout << ((is_shorted(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 	
 	comparations /= 100;
-	std::cout << HBLU <<  secuence.size() << " elements, " << "worst case : " << F(secuence.size()) << std::endl;
-	std::cout << HMAG <<  secuence.size() << " elements, " << "average comparations done : " << comparations << std::endl;
-	std::cout << ((F(secuence.size()) >= comparations) ? HGRE"Comparation number in range" : HRED"Comparation number out of range") << std::endl;
 	
-	std::cout << HMAG << "Total time used: " << time_used << std::endl;
-	std::cout << HMAG << "Average time used: " << time_used / 100 << std::endl;
+	std::cout << HYEL <<  secuence.size() << " elements: " << std::endl;
 
+	std::cout << HBLU"Worst case posible :\t" << HRED << F(secuence.size()) << " comparations" << std::endl;
+	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= comparations) ? HGRE:HRED) << comparations << " comparations" << std::endl;
+	
+	std::cout << HMAG << "Total time used:\t" << HYEL << time_used << " seconds" << std::endl;
+	std::cout << HMAG << "Average time used:\t" << HYEL << (time_used / 100) * 1000000 << " nano seconds" << RST << std::endl;
+
+	std::cout << HMAG << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
 }
-
 void PmergeMe::shortList(size_t elements)
 {
 	std::list<std::list<int> > secuence;
@@ -537,27 +523,75 @@ void PmergeMe::shortList(size_t elements)
 	double time_used = 0;
 
 	comparations = 0 ;
-	std::cout <<  HBLU"LIST" << std::endl;
+	winsize w;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	std::cout << HBLU << std::setw(w.ws_col/2 + 2) << std::setfill('-') << "LIST" << std::setw(w.ws_col/2 - 2) << std::setfill('-') << '-' << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
 		secuence = randSecuenceL(elements);
 
 		clock_t start_time = clock();
 		if (elements != 1 && elements != 0)
-			secuence = shortL(secuence);
+			secuence = mergeInsertShort(secuence);
 		clock_t end_time = clock();
 		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
-		std::cout << ((is_shortedL(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
+		std::cout << ((is_shorted(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
 
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 	
 	comparations /= 100;
-	std::cout << HBLU <<  secuence.size() << " elements, " << "worst case : " << F(secuence.size()) << std::endl;
-	std::cout << HMAG <<  secuence.size() << " elements, " << "average comparations done : " << comparations << std::endl;
-	std::cout << ((F(secuence.size()) >= comparations) ? HGRE"Comparation number in range" : HRED"Comparation number out of range") << std::endl;
 	
-	std::cout << HMAG << "Total time used: " << time_used << std::endl;
-	std::cout << HMAG << "Average time used: " << time_used / 100 << std::endl;
+	std::cout << HYEL << "Elements:\t\t" << secuence.size() << std::endl;
 
+	std::cout << HBLU"Worst case posible :\t" << HRED << F(secuence.size()) << " comparations" << std::endl;
+	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= comparations) ? HGRE:HRED) << comparations << " comparations" << std::endl;
+	
+	std::cout << HMAG << "Total time used:\t" << HYEL << time_used << " seconds" << std::endl;
+	std::cout << HMAG << "Average time used:\t" << HYEL << (time_used / 100) * 1000000 << " nano seconds" << RST << std::endl;
+	    
+	std::cout << HBLU << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
+
+}
+
+void PmergeMe::shortList(std::list<int> list)
+{
+	std::list<std::list<int> > secuence;
+	std::cout << "Before:\t";
+	print_secuence(list);
+	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
+	{
+		std::list<int> tmp;
+		tmp.push_back(*it);
+		secuence.push_back(tmp);
+	}
+	clock_t start_time = clock();
+	if (list.size() != 1 && list.size() != 0)
+		secuence = mergeInsertShort(secuence);
+	clock_t end_time = clock();
+	double totalTime =  ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+	std::cout << "After:\t";
+	print_secuence(secuence);
+	std::cout << "Time to process a range of " << secuence.size() << \
+	" elements with std::list : " << totalTime * 1000000 << " us" << std::endl;
+}
+void PmergeMe::shortVector(std::vector<int> vector)
+{
+	std::vector<std::vector<int> > secuence;
+
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); it++)
+	{
+		std::vector<int> tmp;
+		tmp.push_back(*it);
+		secuence.push_back(tmp);
+	}
+	clock_t start_time = clock();
+	if (vector.size() != 1 && vector.size() != 0)
+		secuence = mergeInsertShort(secuence);
+	clock_t end_time = clock();
+	double totalTime =  ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << secuence.size() << \
+	" elements with std::vector : " << totalTime * 1000000 << " us" << std::endl;
+
+	(void)vector;
 }

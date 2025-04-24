@@ -4,29 +4,30 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <deque>
-#include <typeinfo>
-#include <cstdio>
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
 #include <cmath>
 #include <iterator>
+#include <iomanip>
+#include <sys/ioctl.h>
 
 #define HRED	"\033[91m"
 #define HBLU	"\033[94m"
 #define HGRE	"\033[92m"
 #define HMAG	"\033[95m"
+#define HYEL	"\033[93m"
 #define RST		"\033[0m"
 
+
+#define nextJacobsthal(n_jacobsthal) ((pow(2, n_jacobsthal)) - (pow(-1, n_jacobsthal))) / 3
 
 class	PmergeMe
 {
 private:
 
 /*--------------------CONSTRUCTORS-------------------*/
-
 	PmergeMe();
 	PmergeMe(const PmergeMe &model);
 	PmergeMe &operator=(const PmergeMe &model);
@@ -37,10 +38,14 @@ private:
 
 public:
 
-	static void shortVector(size_t elements);
-	static void shortList(size_t elements);
-	static int comparations;
 /*-----------------PUBLIC_FUNCTIONS------------------*/
+
+	static void shortList(size_t elements);
+	static void shortVector(size_t elements);
+	static void shortList(std::list<int> list);
+	static void shortVector(std::vector<int> vector);
+
+	static int comparations;
 
 };
 

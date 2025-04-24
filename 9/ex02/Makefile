@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= PmergeMe
 SRC			:= main.cpp PmergeMe.cpp 
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
