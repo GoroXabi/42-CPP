@@ -3,7 +3,7 @@ SRC			:= main.cpp PmergeMe.cpp
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow #-std=c++98
 
 all: $(NAME)
 

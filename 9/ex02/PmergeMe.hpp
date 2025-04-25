@@ -11,14 +11,20 @@
 #include <cmath>
 #include <iterator>
 #include <iomanip>
+#include <ctime> 
+#include <random> 
 #include <sys/ioctl.h>
 
-#define HRED	"\033[91m"
-#define HBLU	"\033[94m"
-#define HGRE	"\033[92m"
-#define HMAG	"\033[95m"
-#define HYEL	"\033[93m"
-#define RST		"\033[0m"
+#define HMAG		"\033[95m"
+#define HCYA		"\033[96m"
+#define HDCY		"\033[36m"
+#define HBLU		"\033[94m"
+#define HGRE		"\033[92m"
+#define HYEL		"\033[93m"
+#define HRED		"\033[91m"
+#define TBOL		"\033[1m"
+#define TULN		"\033[4m"
+#define RST			"\033[0m"
 
 
 #define nextJacobsthal(n_jacobsthal) ((pow(2, n_jacobsthal)) - (pow(-1, n_jacobsthal))) / 3
@@ -45,7 +51,7 @@ public:
 	static void shortList(std::list<int> list);
 	static void shortVector(std::vector<int> vector);
 
-	static int comparations;
+	static unsigned int comparations;
 
 };
 

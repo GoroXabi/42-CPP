@@ -441,7 +441,7 @@ bool is_shorted(std::vector<std::vector<int> > secuence)
 }
 
 
-int F(int n)
+unsigned int F(int n)
 {
     int sum = 0;
     for (int k = 1; k <= n; ++k) {
@@ -450,7 +450,7 @@ int F(int n)
     }
     return sum;
 }
-int PmergeMe::comparations = 0;
+unsigned int PmergeMe::comparations = 0;
 
 std::list<std::list<int> > randSecuenceL(size_t elements)
 {
@@ -468,10 +468,11 @@ std::vector<std::vector<int> > randSecuenceV(size_t elements)
 {
 	std::vector<std::vector<int> > randSecuence;
 	srand(time(NULL));
+	
 	for (size_t i = 0; i < elements; i++)
 	{
 		std::vector<int> init;
-		init.push_back(rand() % elements);
+		init.push_back(rand());
 		randSecuence.push_back(init);
 	}
 	return(randSecuence);
@@ -485,72 +486,110 @@ void PmergeMe::shortVector(size_t elements)
 {
 	std::vector<std::vector<int> > secuence;
 	
+	unsigned int wortsCaseC = 0;
+	unsigned int bestCaseC = -1;
+	double wortsCaseT = 0;
+	double bestCaseT = std::numeric_limits<double>::max();
+	unsigned int totalComparations = 0;
 	double time_used = 0;
 
-	comparations = 0 ;
 	winsize w;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	std::cout << HMAG << std::setw(w.ws_col/2 + 3) << std::setfill('-') << "VECTOR" << std::setw(w.ws_col/2 - 3) << std::setfill('-') << '-' << std::endl;
+	std::cout << TBOL HMAG << std::setw(w.ws_col/2 + 3) << std::setfill('-') << "VECTOR" << std::setw(w.ws_col/2 - 3) << std::setfill('-') << '-' << RST << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
+		comparations = 0 ;
 		secuence = randSecuenceV(elements);
 		
 		clock_t start_time = clock();
 		if (elements != 1 && elements != 0)
 			secuence = mergeInsertShort(secuence);
 		clock_t end_time = clock();
-		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
 		std::cout << ((is_shorted(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
+
+		totalComparations += comparations;
+		if (comparations < bestCaseC)
+			bestCaseC = comparations;
+		if (comparations > wortsCaseC)
+			wortsCaseC = comparations;
+		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		if ((((double) (end_time - start_time))  / CLOCKS_PER_SEC) < bestCaseT)
+			bestCaseT = ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		if ((((double) (end_time - start_time))  / CLOCKS_PER_SEC) > wortsCaseT)
+			wortsCaseT = ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		usleep(10000);
 	}
 	std::cout << std::endl << std::endl;
 	
-	comparations /= 100;
+	totalComparations /= 100;
 	
-	std::cout << HYEL <<  secuence.size() << " elements: " << std::endl;
+	std::cout << HYEL << "Elements:\t\t" << TBOL TULN << secuence.size() << RST << std::endl;
 
-	std::cout << HBLU"Worst case posible :\t" << HRED << F(secuence.size()) << " comparations" << std::endl;
-	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= comparations) ? HGRE:HRED) << comparations << " comparations" << std::endl;
-	
-	std::cout << HMAG << "Total time used:\t" << HYEL << time_used << " seconds" << std::endl;
-	std::cout << HMAG << "Average time used:\t" << HYEL << (time_used / 100) * 1000000 << " nano seconds" << RST << std::endl;
+	std::cout << HYEL"Worst case posible :\t"<< TBOL TULN << F(secuence.size()) << RST HYEL << " comparations" << std::endl;
+	std::cout << HBLU"Worst in all tests :\t" << ((F(secuence.size()) >= wortsCaseC) ? HGRE:HRED) << wortsCaseC << " comparations" << std::endl;
+	std::cout << HBLU"Best in all test :\t" << ((F(secuence.size()) >= bestCaseC) ? HGRE:HRED) << bestCaseC << " comparations" << std::endl;
+	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= totalComparations) ? HGRE:HRED) << totalComparations << " comparations" << std::endl;
+	std::cout << HMAG << "Total time used:\t" << HCYA << time_used << " seconds" << std::endl;
+	std::cout << HMAG << "Best time:\t\t" << HCYA << bestCaseT * 1000000 << " nano seconds" << std::endl;
+	std::cout << HMAG << "Worst time:\t\t" << HCYA << wortsCaseT * 1000000 << " nano seconds" << std::endl;
+	std::cout << HMAG << "Average time used:\t" << HCYA << int((time_used / 100) * 1000000) << " nano seconds" << RST << std::endl;
 
-	std::cout << HMAG << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
+	std::cout << TBOL HMAG << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
 }
 void PmergeMe::shortList(size_t elements)
 {
 	std::list<std::list<int> > secuence;
 	
+	unsigned int wortsCaseC = 0;
+	unsigned int bestCaseC = -1;
+	double wortsCaseT = 0;
+	double bestCaseT = std::numeric_limits<double>::max();
+	unsigned int totalComparations = 0;
 	double time_used = 0;
 
-	comparations = 0 ;
 	winsize w;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	std::cout << HBLU << std::setw(w.ws_col/2 + 2) << std::setfill('-') << "LIST" << std::setw(w.ws_col/2 - 2) << std::setfill('-') << '-' << std::endl;
+	std::cout << TBOL HBLU << std::setw(w.ws_col/2 + 2) << std::setfill('-') << "LIST" << std::setw(w.ws_col/2 - 2) << std::setfill('-') << '-' << RST << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
+		comparations = 0 ;
 		secuence = randSecuenceL(elements);
-
+		
 		clock_t start_time = clock();
 		if (elements != 1 && elements != 0)
 			secuence = mergeInsertShort(secuence);
 		clock_t end_time = clock();
-		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
 		std::cout << ((is_shorted(secuence) && secuence.size() == elements) ? "✅ " : "❌ ") << std::flush;
 
+		totalComparations += comparations;
+		if (comparations < bestCaseC)
+			bestCaseC = comparations;
+		if (comparations > wortsCaseC)
+			wortsCaseC = comparations;
+		time_used += ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		if ((((double) (end_time - start_time))  / CLOCKS_PER_SEC) < bestCaseT)
+			bestCaseT = ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		if ((((double) (end_time - start_time))  / CLOCKS_PER_SEC) > wortsCaseT)
+			wortsCaseT = ((double) (end_time - start_time))  / CLOCKS_PER_SEC;
+		usleep(10000);
 	}
 	std::cout << std::endl << std::endl;
 	
-	comparations /= 100;
+	totalComparations /= 100;
 	
-	std::cout << HYEL << "Elements:\t\t" << secuence.size() << std::endl;
+	std::cout << HYEL << "Elements:\t\t" << TBOL TULN << secuence.size() << RST << std::endl;
 
-	std::cout << HBLU"Worst case posible :\t" << HRED << F(secuence.size()) << " comparations" << std::endl;
-	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= comparations) ? HGRE:HRED) << comparations << " comparations" << std::endl;
+	std::cout << HYEL"Worst case posible :\t"<< TBOL TULN << F(secuence.size()) << RST HYEL << " comparations" << std::endl;
+	std::cout << HBLU"Worst in all tests :\t" << ((F(secuence.size()) >= wortsCaseC) ? HGRE:HRED) << wortsCaseC << " comparations" << std::endl;
+	std::cout << HBLU"Best in all test :\t" << ((F(secuence.size()) >= bestCaseC) ? HGRE:HRED) << bestCaseC << " comparations" << std::endl;
+	std::cout << HBLU"Average of all test:\t" << ((F(secuence.size()) >= totalComparations) ? HGRE:HRED) << totalComparations << " comparations" << std::endl;
 	
-	std::cout << HMAG << "Total time used:\t" << HYEL << time_used << " seconds" << std::endl;
-	std::cout << HMAG << "Average time used:\t" << HYEL << (time_used / 100) * 1000000 << " nano seconds" << RST << std::endl;
-	    
-	std::cout << HBLU << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
+	std::cout << HMAG << "Total time used:\t" << HCYA << time_used << " seconds" << std::endl;
+	std::cout << HMAG << "Best time:\t\t" << HCYA << bestCaseT * 1000000 << " nano seconds" << std::endl;
+	std::cout << HMAG << "Worst time:\t\t" << HCYA << wortsCaseT * 1000000 << " nano seconds" << std::endl;
+	std::cout << HMAG << "Average time used:\t" << HCYA << int((time_used / 100) * 1000000) << " nano seconds" << RST << std::endl;
+
+	std::cout << TBOL HBLU << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
 
 }
 

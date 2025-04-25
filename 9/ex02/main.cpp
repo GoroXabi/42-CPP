@@ -21,11 +21,10 @@ int main(int argc, char **argv) {
     {
         if (argc != 3)
         {
-            std::cout << HGRE"In the test mode the input whill be the number of elements of the secuence."<< RST << std::endl;
+            std::cout << TBOL HMAG HGRE"In the test mode the input whill be the number of elements of the secuence."<< RST << std::endl;
             return(1);
         }
         double tmp = std::strtod(argv[2], &err);
-        std::cout << tmp << errno << *err << std::endl;
         if (errno != 0 || *err != 0 || (tmp > std::numeric_limits<int>::max()) || (tmp < 0))
         {
             std::cout << HRED"Not a valid imput for test mode" << RST << std::endl;
@@ -36,7 +35,7 @@ int main(int argc, char **argv) {
 	    std::cout << HGRE << std::setw(w.ws_col/2 + 5) << std::setfill('-') << "TEST MODE:" << std::setw(w.ws_col/2 - 5) << std::setfill('-') << '-' << std::endl << std::endl;
         PmergeMe::shortList((int)tmp);
         PmergeMe::shortVector((int)tmp);
-	    std::cout << HGRE << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl;
+	    std::cout << TBOL HMAG HGRE << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl;
         return(0);
     }
 

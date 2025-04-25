@@ -1,4 +1,4 @@
-NAME		:= default
+NAME		:= RPN
 SRC			:= main.cpp RPN.cpp 
 OBJ			:= $(SRC:%.cpp=%.o)
 CC			:=	c++
