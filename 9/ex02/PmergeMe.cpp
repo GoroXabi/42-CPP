@@ -534,7 +534,7 @@ void PmergeMe::shortVector(size_t elements)
 	std::cout << HMAG << "Worst time:\t\t" << HCYA << wortsCaseT * 1000000 << " nano seconds" << std::endl;
 	std::cout << HMAG << "Average time used:\t" << HCYA << int((time_used / 100) * 1000000) << " nano seconds" << RST << std::endl;
 
-	std::cout << TBOL HMAG << std::setw(w.ws_col) << std::setfill('-') << '-' << RST << std::endl << std::endl;
+	std::cout << TBOL HMAG << std::setw(w.ws_col) << '-' << RST << std::endl << std::endl;
 }
 void PmergeMe::shortList(size_t elements)
 {
